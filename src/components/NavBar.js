@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Appbar() {
+export default function NavBar() {
     const classes = useStyles();
 
     return (
@@ -48,5 +48,5 @@ export default function Appbar() {
                 Contact
             </Typography>
         </Toolbar>
-    );
+    )
 }
