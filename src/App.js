@@ -6,9 +6,11 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginForm from './components/LoginForm';
 import HomePage from './components/HomePage';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar2';
+import PricingPage from './components/PricingPage';
+import AboutPage from './components/AboutPage';
 
-function App() {
+export default function App() {
 
     //test user
     const adminUser = {
@@ -40,31 +42,29 @@ function App() {
     }
 
     return (
-        //<div className="App">
-            (user.email != "") ? (
-                //<div className="welcome">
-                    //<h2>Welcome, <span>{user.name}</span></h2>
-                    //<button>Logout</button>
-                //</div>
-                //<Home Logout={Logout} user={user} />
-                <Router>
+        (user.email != "") ? (
+            //<div className="welcome">
+                //<h2>Welcome, <span>{user.name}</span></h2>
+                //<button>Logout</button>
+            //</div>
+            //<Home Logout={Logout} user={user} />
+            <Router>
+                <div>
                     <NavBar />
-                    <Routes>
-                        <Route path="/" element={<HomePage Logout={Logout} user={user} />} />
-                        <Route path="/pricing" element={<PricingPage />} />
-                        <Route path="/about" element={<AboutPage />} />
-                        
+                </div>
+                <Routes>
+                    <Route path="/" element={<HomePage Logout={Logout} user={user} />} />
+                    <Route path="/pricing" element={<PricingPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    
 
-                    </Routes>
-                </Router>
-            ) : (
-                <LoginForm Login={Login} error={error} />
-                // <Router>
-                //     <Route path="/" element={<Login Login={Login} error={error} />} />
-                // </Router>
-            )
-        //</div>
+                </Routes>
+            </Router>
+        ) : (
+            <LoginForm Login={Login} error={error} />
+            // <Router>
+            //     <Route path="/" element={<Login Login={Login} error={error} />} />
+            // </Router>
+        )
     )
 }
-
-export default App;

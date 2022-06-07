@@ -40,10 +40,10 @@ export default function NavBar() {
             <Typography variant="h6" className={classes.menuItem}>
                 Map
             </Typography>
-            <Typography variant="h6" className={classes.menuItem}>
+            <Typography variant="h6" className={classes.menuItem} onClick={() => navigate("/about")} >
                 About
             </Typography>
-            <Typography variant="h6" className={classes.menuItem}>
+            <Typography variant="h6" className={classes.menuItem} onClick={() => navigate("/pricing")} >
                 Pricing
             </Typography>
             <Typography variant="h6" className={classes.menuItem}>
