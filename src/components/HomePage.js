@@ -2,20 +2,10 @@ import React, { useState } from 'react';
 import NavBar from './NavBar2';
 
 export default function HomePage( { Logout, user } ) {
-
-    const logoutHandler = e => {
-        e.preventDefault();
-
-        Logout();
-    }
-
     return (
         <div className="Home">  
-            <div style={{ display: "flex" }}>  
-                <div className="welcome" style={{ marginLeft: "auto" }}>
-                    <label>Welcome, <span>{user.email}</span></label>
-                    <button onClick={logoutHandler}>Logout</button>
-                </div>
+            <div className="welcome">
+                <a>Welcome, <span>{user.email}</span></a>
             </div>
         </div>
     )

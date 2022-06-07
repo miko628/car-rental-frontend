@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-export default function LoginForm({ Login, error }) {
+export default function RegisterForm({ Register, error }) {
     const [details, setDetails] = useState({name: "", email: "", password: ""})
     let navigate = useNavigate();
 
     const submitHandler = e => {
         e.preventDefault();
 
-        Login(details);
+        Register(details);
     }
 
     return (
         <form onSubmit={submitHandler}>
             <div className="form-inner">
-                <h2>Login</h2>
+                <h2>Register</h2>
                 {/* ERROR! */}
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
@@ -28,7 +29,7 @@ export default function LoginForm({ Login, error }) {
                     <label htmlFor="password">Password:</label>
                     <input type="password" name="passworc" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password} />
                 </div>
-                <input type="submit" value="Login"/>
+                <input type="submit" value="Register"/>
             </div>
         </form>
     )

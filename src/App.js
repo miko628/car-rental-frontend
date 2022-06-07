@@ -1,28 +1,70 @@
 // zainstalowac npm install react-router-dom@6
+//              npm install axios
 
 //import logo from './logo.svg';
 //import './App.css';
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useCallback, useState } from 'react';
+import axios from 'axios'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import StartPage from './components/StartPage';
 import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 import HomePage from './components/HomePage';
-import NavBar from './components/NavBar2';
+import NavBar from './components/NavBar';
 import PricingPage from './components/PricingPage';
 import AboutPage from './components/AboutPage';
 
-export default function App() {
+//test user
+const adminUser = {
+    email: "admin@admin.com",
+    password: "admin123"
+}
+const accessToken = ''
+const apiUrl = 'http://localhost:8080'
 
-    //test user
-    const adminUser = {
-        email: "admin@admin.com",
-        password: "admin123"
+const authAxios = axios.create({
+    baseURL: apiUrl,
+    headers: {
+        Authorization: `Bearer ${accessToken}`
     }
+})
 
+export default function App() {
     const [user, setUser] = useState({name: "", email: ""});
+    const [users, setUsers] = useState([])
     const [error, setError] = useState("");
+
+    // let navigate = useNavigate();
+
+    const fetchData = useCallback(async () => {
+        try {
+            //const result = await axios.get(`${apiUrl}/users/all`)
+            const result = await authAxios.get(`/car/models`)
+            setUsers(result.data)
+        } catch (err) {
+            setRequestError(err.message);
+        }
+
+    })
+
+    // function validate(users, email, password) {
+    //     for(var i=0; i<users.length; i++) {
+    //         if(email == users.email && password == users.password)
+    //     }
+    // }
+
+    const Register = details => {
+        let navigate = useNavigate();
+        console.log(details);
+        console.log("Registered in!");
+        () => navigate("/");
+    }
 
     const Login = details => {
         console.log(details);
+        var email = details.email;
+        var password = details.password;
 
         if (details.email == adminUser.email && details.password == adminUser.password) {
             console.log("Logged in!");
@@ -42,29 +84,38 @@ export default function App() {
     }
 
     return (
-        (user.email != "") ? (
-            //<div className="welcome">
-                //<h2>Welcome, <span>{user.name}</span></h2>
-                //<button>Logout</button>
-            //</div>
-            //<Home Logout={Logout} user={user} />
-            <Router>
-                <div>
-                    <NavBar />
-                </div>
-                <Routes>
-                    <Route path="/" element={<HomePage Logout={Logout} user={user} />} />
-                    <Route path="/pricing" element={<PricingPage />} />
-                    <Route path="/about" element={<AboutPage />} />
+        // (user.email != "") ? (
+        //     //<div className="welcome">
+        //         //<h2>Welcome, <span>{user.name}</span></h2>
+        //         //<button>Logout</button>
+        //     //</div>
+        //     //<Home Logout={Logout} user={user} />
+        //     <Router>
+        //         <NavBar Logout={Logout} user={user} />
+        //         <Routes>
+        //             <Route path="/" element={<StartPage />} />
+        //             <Route path="/login" element={<LoginForm Login={Login} error={error} />} />
+        //             <Route path="/register" element={<RegisterPage Register={Register} error={error} />} />
+        //             <Route path="/home" element={<HomePage Logout={Logout} user={user} />} />
+        //             <Route path="/pricing" element={<PricingPage />} />
+        //             <Route path="/about" element={<AboutPage />} />
                     
-
-                </Routes>
-            </Router>
-        ) : (
-            <LoginForm Login={Login} error={error} />
-            // <Router>
-            //     <Route path="/" element={<Login Login={Login} error={error} />} />
-            // </Router>
-        )
+        //         </Routes>
+        //     </Router>
+        // ) : (
+        //     <LoginForm Login={Login} error={error} />
+        // )
+        <Router>
+            <NavBar Logout={Logout} user={user} />
+            <Routes>
+                <Route path="/" element={<StartPage />} />
+                <Route path="/login" element={<LoginForm Login={Login} error={error} />} />
+                <Route path="/register" element={<RegisterForm Register={Register} error={error} />} />
+                <Route path="/home" element={<HomePage Logout={Logout} user={user} />} />
+                <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                
+            </Routes>
+        </Router>
     )
 }
