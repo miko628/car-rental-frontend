@@ -1,8 +1,9 @@
+
+import ReactCardSlider from './ReactCardSlider';
 export default function AboutPage() {
     return(
-        <div>
-            About Page
-
+        <div id="body">
+            <ReactCardSlider/>
         </div>
     )
 }
