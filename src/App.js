@@ -28,34 +28,13 @@ const authAxios = axios.create({
 })
 
 export default function App() {
-    const [user, setUser] = useState({name: "", email: ""});
+    const [user, setUser] = useState({name: "", email: ""})
     const [users, setUsers] = useState([])
-    const [error, setError] = useState("");
-
-    // let navigate = useNavigate();
-
-    const fetchData = useCallback(async () => {
-        try {
-            //const result = await axios.get(`${apiUrl}/users/all`)
-            const result = await authAxios.get(`/car/models`)
-            setUsers(result.data)
-        } catch (err) {
-            setRequestError(err.message);
-        }
-
-    })
-
-    // function validate(users, email, password) {
-    //     for(var i=0; i<users.length; i++) {
-    //         if(email == users.email && password == users.password)
-    //     }
-    // }
+    const [error, setError] = useState("")
 
     const Register = details => {
-        //let navigate = useNavigate();
         console.log(details);
         console.log("Registered in!");
-        //() => navigate("/");
     }
 
     const Login = details => {

@@ -1,46 +1,47 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import './Slider.css';
 import axios from "axios";
 
 const ReactCardSlider = (props) => {
-
     const [cars, setCars] = useState([])
+    const [name, setName] = useState("")
 
-    const componentDidMount = () => {
-        axios.get(`http://localhost:8080/file`)
-          .then(res => {
-            const cars = res.data;
-            this.setState({ cars });
-            console.log("mamy to")
-        })
-    }
-
-    const fetchData = useCallback(async () => {
+    const fetchDataHandler = useCallback(async () => {
         try {
-            const result = await axios.get(`http://localhost:8080/file`)
-            //const result = await authAxios.get(`/car/models`)
-            setCars(result.data)
-            console.log("mamy to")
+            const result = await fetch(`http://localhost:8080/file`)
+
+            if (!result.ok) {
+                throw new Error("Nie udało się pobrać danych")
+            }
+
+            const resultData = await result.json()
+            setCars(resultData)
+
         } catch (err) {
-            setRequestError(err.message);
+            console.log(err.message);
         }
 
-    })
+    }, [])
 
+    useEffect(() => {
+        fetchDataHandler()
+    }, []);
 
-    const slides = [{ image: 'https://picsum.photos/200/300', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/300', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/400', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/300/300', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/500', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/600', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/100', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/100/300', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/400', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/700', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/600', title: "this is a title", description: "This is description analiza" },
-        { image: 'https://picsum.photos/200/200', title: "this is a title", description: "This is description analiza" }];
+    //Object.keys(cars).forEach(car => slides.push({image: url, title: name, desctiption: id}))
+    
+    // slides = [{ image: 'https://picsum.photos/200/300', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/300', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/400', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/300/300', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/500', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/600', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/100', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/100/300', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/400', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/700', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/600', title: "this is a title", description: "This is description analiza" },
+    //     { image: 'https://picsum.photos/200/200', title: "this is a title", description: "This is description analiza" }];
 
     const slideLeft = () => {
         var slider = document.getElementById("slider");
@@ -54,22 +55,20 @@ const ReactCardSlider = (props) => {
 
     return (
         <div id="main-slider-container">
-            {
-                componentDidMount()
-                //fetchData()
-            }
+            {console.log(cars)}
             <MdChevronLeft size={40} className="slider-icon left" onClick={ slideLeft}/>
             <div id='slider'>
                 {
-                    slides.map((slide, index) => {
+                    cars.map((slide, index) => {
                         return (
                             <div className="slider-card" key={index}>
-                                <div className="slider-card-image" style={{ backgroundImage: `url(${slide.image})`, backgroundSize: 'cover'}}> </div>
-                                <p className="slider-card-title">{slide.title}</p>
-                                <p className="slider-card-description">{slide.description}</p>
+                                <div className="slider-card-image" style={{ backgroundImage: `url(${slide.url})`, backgroundSize: 'cover'}}> </div>
+                                <p className="slider-card-title">{slide.id}</p>
+                                <p className="slider-card-description">{slide.size}</p>
                             </div>
                         )
-                    })}
+                    })
+                }
             </div>
             <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
         </div>
