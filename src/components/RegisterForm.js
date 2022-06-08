@@ -9,7 +9,8 @@ export default function RegisterForm({ Register, error }) {
     const submitHandler = e => {
         e.preventDefault();
 
-        Register(details);
+        Register(details)
+        navigate("/")
     }
 
     return (

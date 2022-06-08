@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function LoginForm({ Login, error }) {
@@ -8,7 +9,8 @@ export default function LoginForm({ Login, error }) {
     const submitHandler = e => {
         e.preventDefault();
 
-        Login(details);
+        Login(details)
+        navigate("/home")
     }
 
     return (

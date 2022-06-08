@@ -6,7 +6,7 @@
 import React, { useCallback, useState } from 'react';
 import axios from 'axios'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom"
+//import { useNavigate } from "react-router-dom"
 import StartPage from './components/StartPage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
@@ -55,10 +55,10 @@ export default function App() {
     // }
 
     const Register = details => {
-        let navigate = useNavigate();
+        //let navigate = useNavigate();
         console.log(details);
         console.log("Registered in!");
-        () => navigate("/");
+        //() => navigate("/");
     }
 
     const Login = details => {
@@ -108,7 +108,7 @@ export default function App() {
         <Router>
             <NavBar Logout={Logout} user={user} />
             <Routes>
-                <Route path="/" element={<StartPage />} />
+                <Route exact path="/" element={<StartPage />} />
                 <Route path="/login" element={<LoginForm Login={Login} error={error} />} />
                 <Route path="/register" element={<RegisterForm Register={Register} error={error} />} />
                 <Route path="/home" element={<HomePage Logout={Logout} user={user} />} />
