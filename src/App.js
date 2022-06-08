@@ -1,6 +1,3 @@
-// zainstalowac npm install react-router-dom@6
-//              npm install axios
-
 //import logo from './logo.svg';
 //import './App.css';
 import React, { useCallback, useState } from 'react';
