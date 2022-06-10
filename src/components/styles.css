@@ -64,3 +64,7 @@ body {
 .nav li:hover {
     background-color: rgb(250, 152, 25);
 }
+
+#map {
+    height: 350px;
+}

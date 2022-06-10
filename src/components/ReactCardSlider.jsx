@@ -9,7 +9,7 @@ const ReactCardSlider = (props) => {
 
     const fetchDataHandler = useCallback(async () => {
         try {
-            const result = await fetch(`http://localhost:8080/file`)
+            const result = await fetch(`http://localhost:8080/files`)
 
             if (!result.ok) {
                 throw new Error("Nie udało się pobrać danych")
@@ -55,19 +55,18 @@ const ReactCardSlider = (props) => {
 
     return (
         <div id="main-slider-container">
-            {console.log(cars)}
+            {/* {console.log(cars)} */}
             <MdChevronLeft size={40} className="slider-icon left" onClick={ slideLeft}/>
-            <div id='slider'>
+            <div id='slider' style={{ display: 'flex', justifyContent: 'center'}}>
                 {
-                    cars.map((slide, index) => {
-                        return (
+                    cars.map((slide, index) => (
                             <div className="slider-card" key={index}>
                                 <div className="slider-card-image" style={{ backgroundImage: `url(${slide.url})`, backgroundSize: 'cover'}}> </div>
                                 <p className="slider-card-title">{slide.id}</p>
                                 <p className="slider-card-description">{slide.size}</p>
                             </div>
                         )
-                    })
+                    )
                 }
             </div>
             <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
