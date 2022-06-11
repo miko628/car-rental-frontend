@@ -60,7 +60,7 @@ const ReactCardSlider = (props) => {
             <div id='slider' style={{ display: 'flex', justifyContent: 'center'}}>
                 {
                     cars.map((slide, index) => (
-                            <div className="slider-card" key={index}>
+                        <div className="slider-card" key={index} onClick={() => slide.clickEvent()}>
                                 <div className="slider-card-image" style={{ backgroundImage: `url(${slide.url})`, backgroundSize: 'cover'}}> </div>
                                 <p className="slider-card-title">{slide.id}</p>
                                 <p className="slider-card-description">{slide.size}</p>

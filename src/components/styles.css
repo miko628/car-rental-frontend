@@ -68,3 +68,24 @@ body {
 #map {
     height: 350px;
 }
+.checkboxFrame {
+    margin-top: 20px;
+    user-select: none;
+    border-block-color: black;
+    margin-left: 3px;
+    display: inline-block;
+}
+#checkbox {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+.checkbox-text {
+    display: inline-block;
+    user-select: none;
+    cursor: pointer;
+    margin-left: 1px;
+    margin-right: 2px;
+}

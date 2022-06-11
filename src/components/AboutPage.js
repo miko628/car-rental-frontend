@@ -1,10 +1,12 @@
 import ReactCardSlider from './ReactCardSlider';
-import Map from "./Map";
+import CarCheckbox from "./CarCheckbox";
+import Category from './CarCheckbox';
 
 export default function AboutPage() {
     return(
         <div id="body">
             <div>
+                <CarCheckbox />
                 <ReactCardSlider />
             </div>
         </div>
