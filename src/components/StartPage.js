@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom"
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React from 'react';
+import {useNavigate} from "react-router-dom"
 
 export default function StartPage() {
     let navigate = useNavigate();
-    return(
+    return (
         <div>
-            <div>
-                <h1>
-                    Start page
-                </h1>
-            </div>
-            <div>
-                <button onClick={() => navigate("/login")}>Login</button>
-            </div>
-            <div>
-                <button onClick={() => navigate("/register")}>Register</button>
-            </div>
+            {/*<div>*/}
+            {/*    <h1>*/}
+            {/*        Start page*/}
+            {/*    </h1>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <button onClick={() => navigate("/login")}>Login</button>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <button onClick={() => navigate("/register")}>Register</button>*/}
+            {/*</div>*/}
         </div>
     )
 }

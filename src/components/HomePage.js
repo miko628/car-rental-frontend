@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import NavBar from './NavBar2';
+import React from 'react';
 
-export default function HomePage( { Logout, user } ) {
+export default function HomePage({Logout, user}) {
     return (
-        <div className="Home">  
+        <div className="Home">
             <div className="welcome">
                 <a>Welcome, <span>{user.email}</span></a>
             </div>
