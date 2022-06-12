@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
-export default function HomePage({Logout, user}) {
+export default function HomePage({currentUser}) {
+    // const [currentUser, setCurrentUser] = useState(undefined);
+
     return (
         <div className="Home">
             <div className="welcome">
-                <a>Welcome, <span>{user.email}</span></a>
+                <a>Welcome, <span>{currentUser.username}</span></a>
             </div>
         </div>
     )

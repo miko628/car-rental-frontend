@@ -6,6 +6,7 @@ import StartPage from './components/StartPage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import HomePage from './components/HomePage';
+import SearchPage from './components/SearchPage';
 import PricingPage from './components/PricingPage';
 import AboutPage from './components/AboutPage';
 import "./components/styles.css"
@@ -13,13 +14,12 @@ import AuthService from "./services/auth.service";
 
 
 export default function App() {
-    const [user, setUser] = useState({name: "", email: ""})
-    const [users, setUsers] = useState([])
-    const [error, setError] = useState("")
-
+    // const [user, setUser] = useState({name: "", email: ""})
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
@@ -30,9 +30,6 @@ export default function App() {
             setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
     }, []);
-
-
-    let navigate = useNavigate();
 
     const Register = details => {
         console.log(details);
@@ -47,10 +44,10 @@ export default function App() {
     };
 
 
-    const Logout = () => {
-        console.log("Logout");
-        setUser({name: "", email: ""});
-    }
+    // const Logout = () => {
+    //     console.log("Logout");
+    //     setUser({name: "", email: ""});
+    // }
 
     return (
         <div>
@@ -80,6 +77,11 @@ export default function App() {
                         </Link>
                     </li>
                     <li>
+                        <Link to={"/search"} className="nav-link">
+                            Search
+                        </Link>
+                    </li>
+                    <li>
                         <Link to={"/about"} className="nav-link">
                             About
                         </Link>
@@ -89,13 +91,6 @@ export default function App() {
                             Pricing
                         </Link>
                     </li>
-                    {showModeratorBoard && (
-                        <li className="nav-item">
-                            <Link to={"/mod"} className="nav-link">
-                                Moderator Board
-                            </Link>
-                        </li>
-                    )}
 
                     {showAdminBoard && (
                         <li className="nav-item">
@@ -104,6 +99,7 @@ export default function App() {
                             </Link>
                         </li>
                     )}
+
                     {currentUser && (
                         <li className="nav-item">
                             <Link to={"/user"} className="nav-link">
@@ -111,11 +107,9 @@ export default function App() {
                             </Link>
                         </li>
                     )}
-
                 </ul>
 
                 <ul>
-
                     {currentUser ? (
                         <div>
                             <li className="nav-item">
@@ -131,21 +125,17 @@ export default function App() {
                         </div>
                     ) : (
                         <ul>
-
                             <li className="nav-item">
                                 <Link to={"/login"} className="nav-link">
                                     Login
                                 </Link>
                             </li>
-
                             <li className="nav-item">
                                 <Link to={"/register"} className="nav-link">
                                     Sign Up
                                 </Link>
                             </li>
-
                         </ul>
-
                     )}
                 </ul>
             </nav>
@@ -153,8 +143,9 @@ export default function App() {
             <Routes>
                 <Route exact path="/" element={<StartPage/>}/>
                 <Route path="/login" element={<LoginForm/>}/>
-                <Route path="/register" element={<RegisterForm Register={Register} error={error}/>}/>
-                <Route path="/home" element={<HomePage Logout={Logout} user={user}/>}/>
+                <Route path="/register" element={<RegisterForm Register={Register}/>}/>
+                <Route path="/home" element={<HomePage currentUser={currentUser}/>}/>
+                <Route path="/search" element={<SearchPage/>}/>
                 <Route path="/pricing" element={<PricingPage/>}/>
                 <Route path="/about" element={<AboutPage/>}/>
 
