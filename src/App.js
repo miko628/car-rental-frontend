@@ -9,6 +9,8 @@ import HomePage from './components/HomePage';
 import SearchPage from './components/SearchPage';
 import PricingPage from './components/PricingPage';
 import AboutPage from './components/AboutPage';
+import RentForm from './components/RentForm';
+
 import "./components/styles.css"
 import AuthService from "./services/auth.service";
 
@@ -139,15 +141,21 @@ export default function App() {
                     )}
                 </ul>
             </nav>
+            {/* <a>Welcome, 
+                    <span>
+                        {currentUser.username}
+                    </span>
+            </a> */}
 
             <Routes>
                 <Route exact path="/" element={<StartPage/>}/>
                 <Route path="/login" element={<LoginForm/>}/>
-                <Route path="/register" element={<RegisterForm Register={Register}/>}/>
-                <Route path="/home" element={<HomePage currentUser={currentUser}/>}/>
+                <Route path="/register" element={<RegisterForm/>}/>
+                <Route path="/home" element={<HomePage/>}/>
                 <Route path="/search" element={<SearchPage/>}/>
                 <Route path="/pricing" element={<PricingPage/>}/>
                 <Route path="/about" element={<AboutPage/>}/>
+                <Route path="/rent" element={<RentForm/>}/>
 
             </Routes>
         </div>

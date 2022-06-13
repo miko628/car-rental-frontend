@@ -1,15 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import RentForm from './RentForm';
 import FindForm from './FindForm';
+import AuthService from '../services/auth.service';
 
-export default function HomePage({currentUser}) {
-    // const [currentUser, setCurrentUser] = useState(undefined);
+export default function HomePage() {
+    const [currentUser, setCurrentUser] = useState(undefined);
+    const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+    const [showAdminBoard, setShowAdminBoard] = useState(false);
+    const [username, setUsername] = useState(undefined)
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+            setCurrentUser(user)
+            setUsername(user.username)
+            setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+            setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+        }
+    }, []);
 
     return (
         <div className="Home">
             <div className="welcome">
-                <a>Welcome, <span>{currentUser.username}</span></a>
-                <RentForm />
+                <a>Welcome, 
+                    <span>
+                        {username}
+                    </span>
+                </a>
             </div>
         </div>
     )

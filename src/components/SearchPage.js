@@ -27,7 +27,6 @@ export default function SearchPage() {
             transmission: "Manual",
             fuel: "Gasoline"
         }
-
     ]
 
     return (
