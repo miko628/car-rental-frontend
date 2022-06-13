@@ -1,0 +1,65 @@
+#form-control {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+    #form-control label {
+        text-align: left;
+        display: block;
+    }
+    #form-control h2 {
+        font-size: 20px;
+        color: #006697;
+        margin-bottom: 30px;
+    }
+    #form-control input, #form-control textarea {
+        width: 100%;
+        padding: 6px 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+        display: block;
+    }
+    #form-control button {
+        background: #006697;
+        color: #fff;
+        border: 0;
+        padding: 8px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+#form-finding {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#form-finding label {
+    text-align: left;
+    display: block;
+}
+
+#form-finding h2 {
+    font-size: 20px;
+    color: #006697;
+    margin-bottom: 30px;
+}
+
+    #form-finding input {
+        width: 100%;
+        padding: 6px 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+        display: block;
+    }
+
+        #form-finding input[type="submit"], #form-control input[type="submit"] {
+            background: #006697;
+            color: #fff;
+            border: 0;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }

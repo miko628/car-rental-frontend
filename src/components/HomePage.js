@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import RentForm from './RentForm';
+import FindForm from './FindForm';
 
 export default function HomePage({currentUser}) {
     // const [currentUser, setCurrentUser] = useState(undefined);
@@ -7,6 +9,7 @@ export default function HomePage({currentUser}) {
         <div className="Home">
             <div className="welcome">
                 <a>Welcome, <span>{currentUser.username}</span></a>
+                <RentForm />
             </div>
         </div>
     )
