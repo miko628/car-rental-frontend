@@ -10,22 +10,20 @@ export default function SearchPage() {
             showroom: 'Gdańsk Kowalski',
             brand: "Audi",
             model: "A3",
-            year: 2022,
             type: "Sedan",
             seats: 5,
             transmission: "Automatic",
-            fuel: "Diesel"
+            fuel: "ON"
         },
         {
             image: 'https://picsum.photos/200/300',
             showroom: 'Warszawa Szmyt',
             brand: "BMW",
             model: "M2",
-            year: 2018,
             type: "Coupe",
             seats: 5,
             transmission: "Manual",
-            fuel: "Gasoline"
+            fuel: "PB95"
         }
     ]
 

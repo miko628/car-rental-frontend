@@ -1,18 +1,17 @@
-//import logo from './logo.svg';
-//import './App.css';
 import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import StartPage from './components/StartPage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import UserPage from './components/UserPage';
 import HomePage from './components/HomePage';
 import SearchPage from './components/SearchPage';
 import PricingPage from './components/PricingPage';
 import AboutPage from './components/AboutPage';
 import RentForm from './components/RentForm';
-
-import "./components/styles.css"
 import AuthService from "./services/auth.service";
+import "./components/styles.css"
+
 
 
 export default function App() {
@@ -153,8 +152,9 @@ export default function App() {
                 <Route path="/register" element={<RegisterForm/>}/>
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/search" element={<SearchPage/>}/>
-                <Route path="/pricing" element={<PricingPage/>}/>
                 <Route path="/about" element={<AboutPage/>}/>
+                <Route path="/pricing" element={<PricingPage/>}/>
+                <Route path="/user" element={<UserPage/>}/>
                 <Route path="/rent" element={<RentForm/>}/>
 
             </Routes>

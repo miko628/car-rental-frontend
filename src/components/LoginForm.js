@@ -10,8 +10,8 @@ export default function LoginForm() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
-    const form = useRef();
-    const checkBtn = useRef();
+    // const form = useRef();
+    // const checkBtn = useRef();
 
     const onChangeUsername = (e) => {
         const username = e.target.value;
@@ -57,10 +57,9 @@ export default function LoginForm() {
     return (
 
         <div>
-            <form onSubmit={submitHandler} ref={form}>
+            <form onSubmit={submitHandler} /*ref={form}*/>
                 <div className="form-inner">
                     <h2>Login</h2>
-                    {/* ERROR! */}
                     <div className="form-group">
                         <label htmlFor="name">Name:</label>
                         <input type="text" name="name" id="name" value={username} onChange={onChangeUsername}/>

@@ -55,7 +55,6 @@ export default function RegisterForm() {
         <form onSubmit={submitHandler}>
             <div className="form-inner">
                 <h2>Register</h2>
-                {/* ERROR! */}
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input type="text" name="name" id="name" onChange={onChangeUsername} value={username}/>
