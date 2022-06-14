@@ -41,3 +41,8 @@
 .trBody:hover .td{
     background: rgba(255, 238, 211, 0.158);
 }
+
+.img {
+    height: 120px;
+    width: 120px;
+}

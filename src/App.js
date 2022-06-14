@@ -101,26 +101,26 @@ export default function App() {
                         </li>
                     )}
 
-                    {currentUser && (
+                    {/* {currentUser && (
                         <li className="nav-item">
                             <Link to={"/user"} className="nav-link">
                                 User
                             </Link>
                         </li>
-                    )}
+                    )} */}
                 </ul>
 
                 <ul>
                     {currentUser ? (
                         <div>
                             <li className="nav-item">
-                                <Link to={"/profile"} className="nav-link">
+                                <Link to={"/user"} className="nav-link">
                                     {currentUser.username}
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <a href="/login" className="nav-link" onClick={logoutHandler}>
-                                    LogOut
+                                    Logout
                                 </a>
                             </li>
                         </div>

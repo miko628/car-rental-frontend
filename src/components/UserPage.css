@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.user-profile {
+    padding: 5px;
+}
+
+input, label {
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.user-container {
+    display: block;
+    position: relative;
+    padding: 20px;
+}
+
+.form {
+    display: block;
+    position: relative;
+
+}
+
+.form:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: 1;
+    background-color: rgba(253, 186, 85, 0.856);
+}
+
+.form-inner {
+    position: relative;
+    display: block;
+    background-color: #FFF;
+    padding: 20px;
+    z-index: 2;
+}

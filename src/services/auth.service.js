@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./authHeader";
 
 const API_URL = "http://localhost:8080/api/auth/";
 const API_URL_UPDATE = "http://localhost:8080/api/users/";
@@ -17,6 +18,7 @@ const login = async (username, password) => {
             username,
             password,
         });
+    // console.log(response.data)
     if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
     }
@@ -29,8 +31,9 @@ const updateProfile = async (currentUsername, username, email, password) => {
             currentUsername,
             username,
             email,
-            password
+            password,
         }, {headers: authHeader()});
+    // console.log(response.data)
     if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
     }
@@ -42,7 +45,7 @@ const updatePassword = async (username, currentPassword, newPassword) => {
         .post(API_URL_UPDATE + "updatePassword", {
             username,
             currentPassword,
-            newPassword
+            newPassword,
         }, {headers: authHeader()});
     if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));

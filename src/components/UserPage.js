@@ -2,10 +2,12 @@ import React, {useEffect, useState} from 'react';
 import RentForm from './RentForm';
 import FindForm from './FindForm';
 import AuthService from '../services/auth.service';
+import "./UserPage.css"
 
 export default function UserPage() {
     const [currentUser, setCurrentUser] = useState(undefined);
     const [currentUsername, setCurrentUsername] = useState("");
+    const [currentEmail, setCurrentEmail] = useState("")
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -24,6 +26,9 @@ export default function UserPage() {
         if (user) {
             setCurrentUser(user)
             setCurrentUsername(user.username)
+            setUsername(user.username)
+            setCurrentEmail(user.email)
+            setEmail(user.email)
             setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
             setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
@@ -37,7 +42,7 @@ export default function UserPage() {
         setMessage("");
         setLoading(true);
 
-
+        console.log(currentUsername);
         console.log(username);
         console.log(email);
         console.log(password);
@@ -68,7 +73,7 @@ export default function UserPage() {
         setMessage("");
         setLoading(true);
 
-
+        console.log(currentUsername);
         console.log(username);
         console.log(password);
 
@@ -95,13 +100,13 @@ export default function UserPage() {
     const onChangeUsername = (e) => {
         const username = e.target.value;
         setUsername(username);
-        console.log(username)
+        // console.log(username)
     };
 
     const onChangeEmail = (e) => {
         const email = e.target.value;
         setEmail(email);
-        console.log(email)
+        // console.log(email)
     };
 
     const onChangePassword = (e) => {
@@ -112,32 +117,34 @@ export default function UserPage() {
     const onChangeCurrentPassword = (e) => {
         const currentPassword = e.target.value;
         setCurrentPassword(currentPassword);
+        console.log(currentPassword)
     };
 
     const onChangeNewPassword = (e) => {
         const newPassword = e.target.value;
         setNewPassword(newPassword);
+        console.log(newPassword)
     };
 
     return (
         <div className="user-container">
-            <h1>User profile</h1>
+            <h3 className='user-profile'>User profile</h3>
             <form onSubmit={submitProfileHandler} className="form">
                 <div className="form-inner">
                     <div className="form-group">
                         <label htmlFor="name">Name:</label>
-                        <input type="text" name="name" id="name" value={username} 
+                        <input type="text" name="name" id="name" value={username} /*defaultValue={currentUsername}*/
                             onChange={onChangeUsername}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
-                        <input type="email" name="email" id="email" value={email} 
+                        <input type="email" name="email" id="email" value={email}  /*defaultValue={currentEmail}*/
                             onChange={onChangeEmail}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
                         <input type="password" name="password" id="password" value={password}
-                            onChange={onChangePassword}/>
+                            onChange={onChangePassword} onBlur={onChangePassword}/>
                     </div>
                     <input type="submit" value="Update profile"/>
                 </div>

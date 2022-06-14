@@ -5,7 +5,8 @@ import "./Table.css"
 const Table = ({ data }) => {
     let navigate = useNavigate();
 
-    const keys = Object.keys(data[0])
+    // const keys = Object.keys(data[0])
+    const keys = ['image', 'showroom', 'brand', 'model', 'type', 'seats', 'transmission', 'fuel']
     const columns = ['Image', 'Showroom', 'Brand', 'Model', 'Type', 'Seats', 'Transmission', 'Fuel']
 
     const rentHandler = (e) => {
@@ -33,7 +34,7 @@ const Table = ({ data }) => {
                                 switch (item) {
                                     case "image": return (
                                         <td className="td" key={index}>
-                                            <img src={value} />
+                                            <img src={value} className="img" /*width="120" height="120"*//>
                                         </td>
                                     );
                                     case "id": return ;
@@ -43,19 +44,19 @@ const Table = ({ data }) => {
                                         </td>
                                     )
                                 }
-                                if(item === "image") {
-                                    return (
-                                        <td className="td" key={index}>
-                                            <img src={value} />
-                                        </td>
-                                    )
-                                } else {
-                                    return (
-                                        <td className="td" key={index}>
-                                            {value}
-                                        </td>
-                                    )
-                                }
+                                // if(item === "image") {
+                                //     return (
+                                //         <td className="td" key={index}>
+                                //             <img src={value} />
+                                //         </td>
+                                //     )
+                                // } else {
+                                //     return (
+                                //         <td className="td" key={index}>
+                                //             {value}
+                                //         </td>
+                                //     )
+                                // }
                             })}
                         </tr>
                     ))}
