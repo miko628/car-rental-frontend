@@ -52,23 +52,25 @@ export default function RegisterForm() {
     }
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className="form-inner">
-                <h2>Register</h2>
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" name="name" id="name" onChange={onChangeUsername} value={username}/>
+        <div className="user-container">
+            <h3 className='user-profile'>Register</h3>
+            <form onSubmit={submitHandler} className="form">
+                <div className="form-inner">
+                    <div className="form-group">
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" name="name" id="name" onChange={onChangeUsername} value={username}/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" name="email" id="email" onChange={onChangeEmail} value={email}/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password:</label>
+                        <input type="password" name="passworc" id="password" onChange={onChangePassword} value={password}/>
+                    </div>
+                    <input className="form-submit" type="submit" value="Register"/>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" name="email" id="email" onChange={onChangeEmail} value={email}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" name="passworc" id="password" onChange={onChangePassword} value={password}/>
-                </div>
-                <input type="submit" value="Register"/>
-            </div>
-        </form>
+            </form>
+        </div>
     )
 }

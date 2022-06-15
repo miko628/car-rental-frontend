@@ -9,19 +9,18 @@
     height: 100%;
     white-space: nowrap;
     overflow-x: scroll;
-   
     scroll-behavior: smooth;
 }
 
-#slider::-webkit-scrollbar {
-    display: none;
-}
+    #slider::-webkit-scrollbar {
+        display: none;
+    }
 
 #main-slider-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: relative;
 }
 
 
@@ -78,4 +77,5 @@
     margin-right: 5px;
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 12%);
     cursor: pointer;
+    user-select: none;
 }

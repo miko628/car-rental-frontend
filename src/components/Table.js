@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useCallback, useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom"
+import axios from 'axios'
 import "./Table.css"
 
 const Table = ({ data }) => {

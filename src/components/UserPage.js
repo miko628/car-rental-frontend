@@ -146,7 +146,7 @@ export default function UserPage() {
                         <input type="password" name="password" id="password" value={password}
                             onChange={onChangePassword} onBlur={onChangePassword}/>
                     </div>
-                    <input type="submit" value="Update profile"/>
+                    <input className="form-submit" type="submit" value="Update profile"/>
                 </div>
             </form>
             <form onSubmit={submitPasswordHandler} className="form">
@@ -161,7 +161,7 @@ export default function UserPage() {
                         <input type="password" name="newPassword" id="newPassword" value={newPassword}
                             onChange={onChangeNewPassword}/>
                     </div>
-                    <input type="submit" value="Update password"/>
+                    <input className="form-submit" type="submit" value="Update password"/>
                 </div>
             </form>
         </div>

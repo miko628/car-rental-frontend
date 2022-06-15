@@ -55,11 +55,10 @@ export default function LoginForm() {
     };
 
     return (
-
-        <div>
-            <form onSubmit={submitHandler} /*ref={form}*/>
+        <div className="user-container">
+            <h3 className='user-profile'>Login</h3>
+            <form onSubmit={submitHandler} className="form">
                 <div className="form-inner">
-                    <h2>Login</h2>
                     <div className="form-group">
                         <label htmlFor="name">Name:</label>
                         <input type="text" name="name" id="name" value={username} onChange={onChangeUsername}/>
@@ -69,7 +68,7 @@ export default function LoginForm() {
                         <input type="password" name="passworc" id="password" value={password}
                                onChange={onChangePassword}/>
                     </div>
-                    <input type="submit" value="Login"/>
+                    <input className="form-submit" type="submit" value="Login"/>
                 </div>
             </form>
         </div>

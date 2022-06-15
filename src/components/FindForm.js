@@ -2,12 +2,15 @@ import React from 'react';
 import axios from "axios";
 import './forms.css'
 import { useCallback, useState, useEffect } from 'react';
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import Table from './Table';
 
-function FindForm({showroomIsChosen}) {
+function FindForm() {
     const [showrooms, setShowrooms] = useState([])
     // const [data, setData] = useState([])
     const [showroom, setShowroom] = useState('');
+
+    let navigate = useNavigate();
 
     // const API_URL = "http://localhost:8080/table";
 
@@ -48,31 +51,9 @@ function FindForm({showroomIsChosen}) {
 
     }, []);
 
-    // const submitHandler2 = e => {
-    //     e.preventDefault();
-    //     fetch('http://localhost:8080/table', {
-    //         method: 'POST',
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(showroom)
-    //     }).then(()=> { console.log({showroom})})
-
-    // }
-
-    // const submitHandler = async (showroom) => {
-    //     const response = await axios
-    //         .post(API_URL, {
-    //             showroom
-    //         });
-        
-    //     console.log(JSON.stringify(response.data))
-    //     setData(JSON.stringify(response.data))
-    //     //return response.data;
-    // };
-
-    const submitHandler = e => {
-        //e.preventDefault()
-        showroomIsChosen(showroom)
-
+    const submitHandler = () => {
+        localStorage.setItem("showroom", JSON.stringify(showroom));
+        navigate("/search")
     };
 
     return (
@@ -88,7 +69,7 @@ function FindForm({showroomIsChosen}) {
                         value={showroom}
                         onChange={onChangeShowroom}
                     >
-                    <option></option>
+                    <option className='tohide' ></option>
                         {showrooms.map((item) => (
                             <option key={item} >{item}</option>))}
         

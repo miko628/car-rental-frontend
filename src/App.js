@@ -9,13 +9,13 @@ import SearchPage from './components/SearchPage';
 import PricingPage from './components/PricingPage';
 import AboutPage from './components/AboutPage';
 import RentForm from './components/RentForm';
+import CarInfo from './components/CarInfo';
 import AuthService from "./services/auth.service";
 import "./components/styles.css"
 
 
 
 export default function App() {
-    // const [user, setUser] = useState({name: "", email: ""})
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -33,28 +33,12 @@ export default function App() {
         }
     }, []);
 
-    const Register = details => {
-        console.log(details);
-        console.log("Registered in!");
-    }
-
     const logoutHandler = () => {
         AuthService.logout();
         // setShowModeratorBoard(false);
         // setShowAdminBoard(false);
         // setCurrentUser(undefined);
     };
-
-    const FindCars = chosenShowroom => {
-        setShowroom(chosenShowroom)
-        console.log("app" + showroom)
-        navigate("/search")
-    }
-
-    // const Logout = () => {
-    //     console.log("Logout");
-    //     setUser({name: "", email: ""});
-    // }
 
     return (
         <div>
@@ -153,16 +137,16 @@ export default function App() {
             </a> */}
 
             <Routes>
-                <Route exact path="/" element={<StartPage FindCars={FindCars} />}/>
+                <Route exact path="/" element={<StartPage/>}/>
                 <Route path="/login" element={<LoginForm/>}/>
                 <Route path="/register" element={<RegisterForm/>}/>
                 <Route path="/home" element={<HomePage/>}/>
-                <Route path="/search" element={<SearchPage showroom={showroom}/>}/>
+                <Route path="/search" element={<SearchPage/>}/>
                 <Route path="/about" element={<AboutPage/>}/>
                 <Route path="/pricing" element={<PricingPage/>}/>
                 <Route path="/user" element={<UserPage/>}/>
                 <Route path="/rent" element={<RentForm/>}/>
-
+                <Route path="/info" element={<CarInfo/>}/>
             </Routes>
         </div>
     )
