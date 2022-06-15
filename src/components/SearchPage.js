@@ -2,9 +2,9 @@ import React, { useCallback, useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom"
 import Table from './Table';
 import axios from 'axios'
+import FindForm from './FindForm';
 
-export default function SearchPage() {
-    
+export default function SearchPage({ showroom }) {
     const [data, setData] = useState([])
     // const [showroom, setShowroom] = useState('');
 
@@ -32,7 +32,7 @@ export default function SearchPage() {
     //     }
     // ]
     const API_URL = "http://localhost:8080/table";
-    const showroom = "dupa"
+    // const showroom = "Krakow"
     // const response = axios.post(API_URL, {
     //         showroom
     //     });

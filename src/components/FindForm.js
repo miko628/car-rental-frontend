@@ -4,12 +4,12 @@ import './forms.css'
 import { useCallback, useState, useEffect } from 'react';
 import Table from './Table';
 
-function FindForm() {
+function FindForm({showroomIsChosen}) {
     const [showrooms, setShowrooms] = useState([])
-    const [data, setData] = useState([])
+    // const [data, setData] = useState([])
     const [showroom, setShowroom] = useState('');
 
-    const API_URL = "http://localhost:8080/table";
+    // const API_URL = "http://localhost:8080/table";
 
     const fetchDataHandler = useCallback(async () => {
         try {
@@ -31,7 +31,7 @@ function FindForm() {
     const onChangeShowroom = (e) => {
         const showroom = e.target.value;
         setShowroom(showroom);
-        // console.log(username)
+        console.log(showroom)
     };
 
     useEffect(() => {
@@ -48,38 +48,38 @@ function FindForm() {
 
     }, []);
 
-    const submitHandler2 = e => {
-        e.preventDefault();
-        fetch('http://localhost:8080/table', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(showroom)
-        }).then(()=> { console.log({showroom})})
+    // const submitHandler2 = e => {
+    //     e.preventDefault();
+    //     fetch('http://localhost:8080/table', {
+    //         method: 'POST',
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(showroom)
+    //     }).then(()=> { console.log({showroom})})
 
-    }
+    // }
 
-    const submitHandler = async (showroom) => {
-        const response = await axios
-            .post(API_URL, {
-                showroom
-            });
+    // const submitHandler = async (showroom) => {
+    //     const response = await axios
+    //         .post(API_URL, {
+    //             showroom
+    //         });
         
-        console.log(JSON.stringify(response.data))
-        setData(JSON.stringify(response.data))
-        //return response.data;
+    //     console.log(JSON.stringify(response.data))
+    //     setData(JSON.stringify(response.data))
+    //     //return response.data;
+    // };
+
+    const submitHandler = e => {
+        //e.preventDefault()
+        showroomIsChosen(showroom)
+
     };
-    
-
-
 
     return (
         <div>
-            {(data.length != 0) ? (
-                <Table data={data}/>
-            ) : (
             <form onSubmit={submitHandler}>
                 <div id='form-finding'>
-                    <h2>Finding form</h2>
+                    {/* <h2>Finding form</h2> */}
 
                     <label>Showroom:</label>
                     <select
@@ -96,8 +96,7 @@ function FindForm() {
                     {/* {console.log({showrooms})} */}
                     <input value="Find" type="submit" />
                 </div>
-            </form>)
-            }
+            </form>
         </div>
 
     )

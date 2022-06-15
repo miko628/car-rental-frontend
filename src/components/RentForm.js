@@ -12,9 +12,6 @@ function RentForm() {
     const submitHandler = e => {
         e.preventDefault();
 
-
-
-
         console.log({ selectedcollDate })
         console.log({ selectedretDate })
         console.log({Showroom})

@@ -45,14 +45,14 @@ const updatePassword = async (username, currentPassword, newPassword) => {
         .post(API_URL_UPDATE + "updatePassword", {
             username,
             currentPassword,
-            newPassword,
+            newPassword
         }, {headers: authHeader()});
-    if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+    console.log(response.data);
+    if (response.data.message == 'GIT') {
+        await login(username, newPassword);
     }
     return response.data;
 };
-
 
 
 const logout = () => {

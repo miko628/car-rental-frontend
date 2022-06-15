@@ -6,7 +6,7 @@ const Table = ({ data }) => {
     let navigate = useNavigate();
 
     // const keys = Object.keys(data[0])
-    const keys = ['image', 'showroom', 'brand', 'model', 'type', 'seats', 'transmission', 'fuel']
+    const keys = ['url', 'showroom', 'brand', 'model', 'type', 'seats', 'transmission', 'fuel', 'id']
     const columns = ['Image', 'Showroom', 'Brand', 'Model', 'Type', 'Seats', 'Transmission', 'Fuel']
 
     const rentHandler = (e) => {
@@ -32,13 +32,14 @@ const Table = ({ data }) => {
                             {keys.map((item, index) => {
                                 const value = obj[item]
                                 switch (item) {
-                                    case "image": return (
+                                    case "url": return (
                                         <td className="td" key={index}>
+                                            {console.log({value})}
                                             <img src={value} className="img" /*width="120" height="120"*//>
                                         </td>
                                     );
-                                    case "id": return ;
-                                    default:        return (
+                                    case "id":  return ;
+                                    default:    return (
                                         <td className="td" key={index}>
                                             {value}
                                         </td>
