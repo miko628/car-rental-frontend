@@ -53,6 +53,7 @@ export default function RegisterForm() {
 
     return (
         <div className="user-container">
+            <div>
             <h3 className='user-profile'>Register</h3>
             <form onSubmit={submitHandler} className="form">
                 <div className="form-inner">
@@ -71,6 +72,7 @@ export default function RegisterForm() {
                     <input className="form-submit" type="submit" value="Register"/>
                 </div>
             </form>
+            </div>
         </div>
     )
 }

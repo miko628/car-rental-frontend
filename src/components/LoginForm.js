@@ -56,6 +56,7 @@ export default function LoginForm() {
 
     return (
         <div className="user-container">
+            <div>
             <h3 className='user-profile'>Login</h3>
             <form onSubmit={submitHandler} className="form">
                 <div className="form-inner">
@@ -71,6 +72,7 @@ export default function LoginForm() {
                     <input className="form-submit" type="submit" value="Login"/>
                 </div>
             </form>
+            </div>
         </div>
     )
 }

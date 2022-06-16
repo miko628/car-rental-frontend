@@ -128,6 +128,7 @@ export default function UserPage() {
 
     return (
         <div className="user-container">
+            <div>
             <h3 className='user-profile'>User profile</h3>
             <form onSubmit={submitProfileHandler} className="form">
                 <div className="form-inner">
@@ -164,6 +165,7 @@ export default function UserPage() {
                     <input className="form-submit" type="submit" value="Update password"/>
                 </div>
             </form>
+            </div>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 ﻿import React, { useCallback, useState, useEffect } from 'react';
 //import AuthService from '../services/auth.service';
-import info from './info.css'
+import './CarInfo.css'
+
 export default function CarInfo(props) {
     const [Data, setData] = useState([]);
     
