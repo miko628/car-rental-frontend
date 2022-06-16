@@ -1,13 +1,16 @@
 ﻿import React, { useCallback, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 //import AuthService from '../services/auth.service';
 import './CarInfo.css'
 
 export default function CarInfo(props) {
     const [Data, setData] = useState([]);
+
+    const {id} = useParams();
     
     const fetchDataHandler = useCallback(async () => {
         try {
-            const result = await fetch('http://localhost:8080/cars?id=2' )//+ new URLSearchParams({id: 1}))
+            const result = await fetch('http://localhost:8080/cars?id=' + id )//+ new URLSearchParams({id: 1}))
 
             if (!result.ok) {
                 throw new Error("Nie uda³o siê pobraæ danych")

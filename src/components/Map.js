@@ -1,8 +1,12 @@
+import { Button } from '@material-ui/core';
 import React, { useCallback, useState, useEffect } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import {useNavigate} from "react-router-dom"
 
 export default function Map() {
     const [showrooms, setShowrooms] = useState([])
+
+    let navigate = useNavigate();
 
     const fetchDataHandler = useCallback(async () => {
         try {
@@ -25,9 +29,14 @@ export default function Map() {
         fetchDataHandler()
     }, []);
 
+    const clickEvent = (props) => {
+        localStorage.setItem("showroom", JSON.stringify(props.showroom.name));
+        navigate("/search")
+    };
+
     return(
         <div id="map" className="leafletContainer">
-            <MapContainer style={{height: '100%', width:'100%'}} center={[52.20394673896355, 19.453349200746953]} zoom={6} scrollWheelZoom={true}>
+            <MapContainer style={{height: '100%', width:'100%'}} center={[52.0, 19.4]} zoom={6} scrollWheelZoom={true}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -36,7 +45,10 @@ export default function Map() {
                     showrooms.map(showroom => (
                                 <Marker key={showroom.id} position={[showroom.latitude, showroom.longitude]}>
                                     <Popup>
-                                        {showroom.name}
+                                        <div>
+                                            <label>{showroom.name}  </label>
+                                            <Button onClick={() => clickEvent({ showroom })}>Select</Button>
+                                        </div>
                                     </Popup>
                                 </Marker>
                 ))}

@@ -63,7 +63,7 @@ export default function App() {
                 </Link>
                 <ul>
                     <li>
-                        <Link to={"/home"} className="nav-link">
+                        <Link to={"/"} className="nav-link">
                             Home
                         </Link>
                     </li>
@@ -138,15 +138,16 @@ export default function App() {
 
             <Routes>
                 <Route exact path="/" element={<StartPage/>}/>
-                <Route path="/login" element={<LoginForm/>}/>
-                <Route path="/register" element={<RegisterForm/>}/>
-                <Route path="/home" element={<HomePage/>}/>
-                <Route path="/search" element={<SearchPage/>}/>
-                <Route path="/about" element={<AboutPage/>}/>
-                <Route path="/pricing" element={<PricingPage/>}/>
-                <Route path="/user" element={<UserPage/>}/>
-                <Route path="/rent" element={<RentForm/>}/>
-                <Route path="/info" element={<CarInfo/>}/>
+                <Route exact path="/login" element={<LoginForm/>}/>
+                <Route exact path="/register" element={<RegisterForm/>}/>
+                {/* <Route exact path="/home" element={<HomePage/>}/> */}
+                <Route exact path="/search" element={<SearchPage/>}/>
+                <Route exact path="/about" element={<AboutPage/>}/>
+                <Route exact path="/pricing" element={<PricingPage/>}/>
+                <Route exact path="/user" element={<UserPage/>}/>
+                <Route exact path="/rent" element={<RentForm/>}/>
+                <Route exact path="/info/:id" element={<CarInfo/>}/>
+                
             </Routes>
         </div>
     )

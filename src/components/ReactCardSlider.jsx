@@ -1,12 +1,15 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import {useNavigate} from "react-router-dom"
 import './Slider.css';
 import axios from "axios";
 import HomePage from './HomePage';
 
-function ReactCardSlider({ carIsChosen}) {
+function ReactCardSlider() {
     const [cars, setCars] = useState([])
     const [name, setName] = useState("")
+
+    let navigate = useNavigate();
 
     const fetchDataHandler = useCallback(async () => {
         try {
@@ -54,9 +57,11 @@ function ReactCardSlider({ carIsChosen}) {
         var slider = document.getElementById("slider");
         slider.scrollLeft = slider.scrollLeft + 300;
     }
+
     const clickEvent = (props) => {
-       
-       console.log(props)
+
+        console.log(props.slide.carId)
+        navigate("/info/" + props.slide.carId)
     }
 
     return (

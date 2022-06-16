@@ -62,7 +62,7 @@ function FindForm() {
                 <div id='form-finding'>
                     {/* <h2>Finding form</h2> */}
 
-                    <label>Showroom:</label>
+                    <label>Select from a list:</label>
                     <select
                         type="text"
                         required
@@ -75,7 +75,7 @@ function FindForm() {
         
                     </select>
                     {/* {console.log({showrooms})} */}
-                    <input value="Find" type="submit" />
+                    <input value="Select" type="submit" />
                 </div>
             </form>
         </div>

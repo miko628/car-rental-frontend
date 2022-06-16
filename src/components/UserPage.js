@@ -145,7 +145,7 @@ export default function UserPage() {
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
                         <input type="password" name="password" id="password" value={password}
-                            onChange={onChangePassword} onBlur={onChangePassword}/>
+                            onChange={onChangePassword}/>
                     </div>
                     <input className="form-submit" type="submit" value="Update profile"/>
                 </div>
