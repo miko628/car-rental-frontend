@@ -11,12 +11,14 @@ import AboutPage from './components/AboutPage';
 import RentForm from './components/RentForm';
 import CarInfo from './components/CarInfo';
 import AuthService from "./services/auth.service";
+import AdminPage from './components/AdminPage';
+
 import "./components/styles.css"
 
 
 
 export default function App() {
-    const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+    // const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
     const [showroom, setShowroom] = useState('');
@@ -28,7 +30,7 @@ export default function App() {
 
         if (user) {
             setCurrentUser(user);
-            setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+            // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
             setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
     }, []);
@@ -123,7 +125,7 @@ export default function App() {
                             </li>
                             <li className="nav-item">
                                 <Link to={"/register"} className="nav-link">
-                                    Sign Up
+                                    Register
                                 </Link>
                             </li>
                         </ul>
@@ -144,6 +146,7 @@ export default function App() {
                 <Route exact path="/search" element={<SearchPage/>}/>
                 <Route exact path="/about" element={<AboutPage/>}/>
                 <Route exact path="/pricing" element={<PricingPage/>}/>
+                <Route exact path="/admin" element={<AdminPage/>}/>
                 <Route exact path="/user" element={<UserPage/>}/>
                 <Route exact path="/rent" element={<RentForm/>}/>
                 <Route exact path="/info/:id" element={<CarInfo/>}/>

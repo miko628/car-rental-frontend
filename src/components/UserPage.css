@@ -3,13 +3,26 @@
     padding: 0;
 }
 
+/* .user-container h2 {
+    padding: 10px;
+    font-weight: 600;
+    color: rgb(27, 27, 27);
+} */
+
+.page-title {
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+    color: #666;
+}
+
 .user-container h3 {
     padding: 10px;
     font-weight: 600;
-    color: #888;
+    color: rgb(32, 54, 75);
 }
 
-input, label {
+input, label, button {
     appearance: none;
     background: none;
     border: none;
@@ -22,7 +35,7 @@ input, label {
     padding: 20px; */
     height:50%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 
 }
@@ -33,7 +46,7 @@ input, label {
     max-width: 400px;
 }
 
-.form:after {
+/* .form:after {
     content: '';
     display: block;
     position: absolute;
@@ -43,14 +56,14 @@ input, label {
     bottom: -5px;
     z-index: 1;
     background-color: rgba(253, 186, 85, 0.856);
-}
+} */
 
 .form-inner {
-    position: relative;
+    /* position: relative; */
     display: block;
     background-color: #FFF;
     padding: 10px;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .form-group {

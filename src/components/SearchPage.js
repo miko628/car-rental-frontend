@@ -42,6 +42,7 @@ export default function SearchPage() {
 
     return (
         <div>
+            <FindForm/>
             <Table data={data}/>
         </div>
     )

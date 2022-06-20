@@ -7,7 +7,7 @@ export default function AboutPage() {
     return(
         <div id="body">
             <div>
-                <FindForm />
+                About
             </div>
         </div>
     )

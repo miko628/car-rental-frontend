@@ -1,8 +1,13 @@
 import React, {useRef, useState} from 'react'
 import {useNavigate} from "react-router-dom"
 import AuthService from "../services/auth.service";
+import InfoPopup from './InfoPopup';
+import './UserPage'
 
 export default function LoginForm() {
+    const [popupTrigger, setPopupTrigger] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("")
+
     let navigate = useNavigate();
 
     const [username, setUsername] = useState("");
@@ -47,31 +52,51 @@ export default function LoginForm() {
                         error.response.data.message) ||
                     error.message ||
                     error.toString();
-
-                setLoading(false);
-                setMessage(resMessage);
+                console.log(resMessage)
+                // setLoading(false);
+                // setMessage(resMessage);
+                setPopupTrigger(true)
+                setPopupMessage(resMessage)
             }
         );
     };
 
     return (
-        <div className="user-container">
-            <div>
-            <h3 className='user-profile'>Login</h3>
-            <form onSubmit={submitHandler} className="form">
-                <div className="form-inner">
-                    <div className="form-group">
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" name="name" id="name" value={username} onChange={onChangeUsername}/>
+        <div>
+            <InfoPopup trigger={popupTrigger} setTrigger={setPopupTrigger}>
+                <h3>{popupMessage}</h3>
+            </InfoPopup>
+            <div className="user-container">
+                {/* <form onSubmit={submitHandler} className="form">
+                    <h3 className='user-profile'>Login</h3>
+                    <div className="form-inner">
+                        <div className="form-group">
+                            <label htmlFor="name">Name:</label>
+                            <input type="text" name="name" id="name" value={username} onChange={onChangeUsername}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password:</label>
+                            <input type="password" name="passworc" id="password" value={password}
+                                onChange={onChangePassword}/>
+                        </div>
+                        <input className="form-submit" type="submit" value="Login"/>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" name="passworc" id="password" value={password}
-                               onChange={onChangePassword}/>
+                </form> */}
+                <div className="form">
+                    <h3 className='user-profile'>Login</h3>
+                    <div className="form-inner">
+                        <div className="form-group">
+                            <label htmlFor="name">Name:</label>
+                            <input type="text" name="name" id="name" value={username} onChange={onChangeUsername}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password:</label>
+                            <input type="password" name="passworc" id="password" value={password}
+                                onChange={onChangePassword}/>
+                        </div>
+                        <button className="form-submit" onClick={submitHandler}>Login</button>
                     </div>
-                    <input className="form-submit" type="submit" value="Login"/>
                 </div>
-            </form>
             </div>
         </div>
     )

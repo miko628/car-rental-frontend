@@ -3,20 +3,23 @@ import RentForm from './RentForm';
 import FindForm from './FindForm';
 import AuthService from '../services/auth.service';
 import "./UserPage.css"
+import InfoPopup from './InfoPopup';
 
 export default function UserPage() {
+    const [popupTrigger, setPopupTrigger] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("")
+
     const [currentUser, setCurrentUser] = useState(undefined);
     const [currentUsername, setCurrentUsername] = useState("");
     const [currentEmail, setCurrentEmail] = useState("")
-    const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
-    
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
+
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
 
@@ -29,7 +32,7 @@ export default function UserPage() {
             setUsername(user.username)
             setCurrentEmail(user.email)
             setEmail(user.email)
-            setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+            // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
             setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
     }, []);
@@ -37,7 +40,6 @@ export default function UserPage() {
 
     const submitProfileHandler = e => {
         e.preventDefault();
-
 
         setMessage("");
         setLoading(true);
@@ -60,15 +62,16 @@ export default function UserPage() {
                     error.message ||
                     error.toString();
 
-                setLoading(false);
-                setMessage(resMessage);
+                // setLoading(false);
+                // setMessage(resMessage);
+                setPopupTrigger(true)
+                setPopupMessage(resMessage)
             }
         );
     }
 
     const submitPasswordHandler = e => {
         e.preventDefault();
-
 
         setMessage("");
         setLoading(true);
@@ -90,8 +93,10 @@ export default function UserPage() {
                     error.message ||
                     error.toString();
 
-                setLoading(false);
-                setMessage(resMessage);
+                // setLoading(false);
+                // setMessage(resMessage);
+                setPopupTrigger(true)
+                setPopupMessage(resMessage)
             }
         );
     }
@@ -127,45 +132,95 @@ export default function UserPage() {
     };
 
     return (
-        <div className="user-container">
-            <div>
-            <h3 className='user-profile'>User profile</h3>
-            <form onSubmit={submitProfileHandler} className="form">
-                <div className="form-inner">
-                    <div className="form-group">
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" name="name" id="name" value={username} /*defaultValue={currentUsername}*/
-                            onChange={onChangeUsername}/>
+        currentUser ? (
+        <div>
+            <InfoPopup trigger={popupTrigger} setTrigger={setPopupTrigger}>
+                <h3>{popupMessage}</h3>
+            </InfoPopup>
+            <h2 className='page-title'>User page</h2>
+            <div className="user-container">
+                {/* <form onSubmit={submitProfileHandler} className="form">
+                <h3 className='user-profile'>Change your info</h3>
+                    <div className="form-inner">
+                        <div className="form-group">
+                            <label htmlFor="name">Name:</label>
+                            <input type="text" name="name" id="name" value={username}
+                                onChange={onChangeUsername}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email:</label>
+                            <input type="email" name="email" id="email" value={email}
+                                onChange={onChangeEmail}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Current password:</label>
+                            <input type="password" name="password" id="password" value={password}
+                                onChange={onChangePassword}/>
+                        </div>
+                        <input className="form-submit" type="submit" value="Update profile"/>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" name="email" id="email" value={email}  /*defaultValue={currentEmail}*/
-                            onChange={onChangeEmail}/>
+                </form> */}
+                <div className="form">
+                <h3 className='user-profile'>Change your info</h3>
+                    <div className="form-inner">
+                        <div className="form-group">
+                            <label htmlFor="name">Name:</label>
+                            <input type="text" name="name" id="name" value={username} /*defaultValue={currentUsername}*/
+                                onChange={onChangeUsername}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email:</label>
+                            <input type="email" name="email" id="email" value={email}  /*defaultValue={currentEmail}*/
+                                onChange={onChangeEmail}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Current password:</label>
+                            <input type="password" name="password" id="password" value={password}
+                                onChange={onChangePassword}/>
+                        </div>
+                        <button className="form-submit" onClick={submitProfileHandler}>Update profile</button>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" name="password" id="password" value={password}
-                            onChange={onChangePassword}/>
-                    </div>
-                    <input className="form-submit" type="submit" value="Update profile"/>
                 </div>
-            </form>
-            <form onSubmit={submitPasswordHandler} className="form">
-                <div className="form-inner">
-                    <div className="form-group">
-                        <label htmlFor="currentPassword">Current password:</label>
-                        <input type="password" name="currentPassword" id="currentPassword" value={currentPassword}
-                            onChange={onChangeCurrentPassword}/>
+
+                {/* <form onSubmit={submitPasswordHandler} className="form">
+                <h3 className='user-profile'>Change your password</h3>
+                    <div className="form-inner">
+                        <div className="form-group">
+                            <label htmlFor="currentPassword">Current password:</label>
+                            <input type="password" name="currentPassword" id="currentPassword" value={currentPassword}
+                                onChange={onChangeCurrentPassword}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="newPassword">New password:</label>
+                            <input type="password" name="newPassword" id="newPassword" value={newPassword}
+                                onChange={onChangeNewPassword}/>
+                        </div>
+                        <input className="form-submit" type="submit" value="Update password"/>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="newPassword">New password:</label>
-                        <input type="password" name="newPassword" id="newPassword" value={newPassword}
-                            onChange={onChangeNewPassword}/>
+                </form> */}
+
+                <div className="form">
+                <h3 className='user-profile'>Change your password</h3>
+                    <div className="form-inner">
+                        <div className="form-group">
+                            <label htmlFor="currentPassword">Current password:</label>
+                            <input type="password" name="currentPassword" id="currentPassword" value={currentPassword}
+                                onChange={onChangeCurrentPassword}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="newPassword">New password:</label>
+                            <input type="password" name="newPassword" id="newPassword" value={newPassword}
+                                onChange={onChangeNewPassword}/>
+                        </div>
+                        <button className="form-submit" onClick={submitPasswordHandler}>Update password</button>
                     </div>
-                    <input className="form-submit" type="submit" value="Update password"/>
                 </div>
-            </form>
+
             </div>
-        </div>
+        </div> ) : (
+            <div className="user-container">
+                <h3 className='user-profile'>Login to see your user profile</h3>
+            </div>
+        )
     )
 }
