@@ -58,11 +58,9 @@ function RentForm() {
                 <DatePicker
                     selected={selectedcollDate}
                     onChange={(date) => setSelectedcollDate(date)}
-                    dateFormat="dd/MM/yyyy HH:mm:ss"
+                    dateFormat="dd/MM/yyyy "
                     minDate={new Date}
-                    showTimeSelect
                     required
-                    timeIntervals={15}
                     placeholderText="Date of collecting car"
                 />
 
@@ -70,10 +68,8 @@ function RentForm() {
                 <DatePicker
                     selected={selectedretDate}
                     onChange={date => setSelectedretDate(date)}
-                    dateFormat="dd/MM/yyyy HH:mm:ss"
-                    showTimeSelect
+                    dateFormat="dd/MM/yyyy "
                     required
-                    timeIntervals={15}
                     placeholderText="Date of returning car"
                     minDate={new Date(selectedcollDate.getFullYear(), selectedcollDate.getMonth(), selectedcollDate.getDate() + 1)}
 

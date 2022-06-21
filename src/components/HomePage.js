@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import RentForm from './RentForm';
-import FindForm from './FindForm';
+import SearchForm from './SearchForm';
 import AuthService from '../services/auth.service';
 
 export default function HomePage() {

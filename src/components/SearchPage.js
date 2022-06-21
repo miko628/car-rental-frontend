@@ -1,8 +1,8 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom"
-import Table from './Table';
+import SearchTable from './SearchTable';
 import axios from 'axios'
-import FindForm from './FindForm';
+import SearchForm from './SearchForm';
 
 export default function SearchPage() {
     const [data, setData] = useState([])
@@ -42,8 +42,8 @@ export default function SearchPage() {
 
     return (
         <div>
-            <FindForm/>
-            <Table data={data}/>
+            <SearchForm/>
+            <SearchTable data={data}/>
         </div>
     )
 }

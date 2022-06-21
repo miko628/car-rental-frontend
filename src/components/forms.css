@@ -47,7 +47,7 @@
     margin-bottom: 30px;
 }
 
-    #form-finding select {
+    #form-finding select, #form-control select {
         width: 100%;
         padding: 6px 10px;
         margin: 10px 0;

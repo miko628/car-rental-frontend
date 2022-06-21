@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import RentForm from './RentForm';
-import FindForm from './FindForm';
 import AuthService from '../services/auth.service';
 import "./UserPage.css"
 import InfoPopup from './InfoPopup';
@@ -105,26 +103,20 @@ export default function UserPage() {
     const onChangeUsername = (e) => {
         const username = e.target.value;
         setUsername(username);
-        // console.log(username)
     };
-
     const onChangeEmail = (e) => {
         const email = e.target.value;
         setEmail(email);
-        // console.log(email)
     };
-
     const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
     };
-
     const onChangeCurrentPassword = (e) => {
         const currentPassword = e.target.value;
         setCurrentPassword(currentPassword);
         console.log(currentPassword)
     };
-
     const onChangeNewPassword = (e) => {
         const newPassword = e.target.value;
         setNewPassword(newPassword);

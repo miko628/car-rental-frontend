@@ -3,9 +3,8 @@ import axios from "axios";
 import './forms.css'
 import { useCallback, useState, useEffect } from 'react';
 import {Link, Route, Routes, useNavigate} from "react-router-dom";
-import Table from './Table';
 
-function FindForm() {
+function SearchForm() {
     const [showrooms, setShowrooms] = useState([])
     // const [data, setData] = useState([])
     const [showroom, setShowroom] = useState('');
@@ -82,4 +81,4 @@ function FindForm() {
 
     )
 }
-export default FindForm;
+export default SearchForm;

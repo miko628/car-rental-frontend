@@ -12,8 +12,11 @@ import RentForm from './components/RentForm';
 import CarInfo from './components/CarInfo';
 import AuthService from "./services/auth.service";
 import AdminPage from './components/AdminPage';
+import AdminManagePage from './components/AdminManagePage';
+import MyRentalsPage from './components/MyRentalsPage';
 
 import "./components/styles.css"
+import golomb from"./golomb-watoski.png"
 
 
 
@@ -60,9 +63,12 @@ export default function App() {
             {/*</nav>*/}
 
             <nav className="nav">
-                <Link to={"/"} className="site-title">
-                    Car rental
-                </Link>
+                <ul>
+                    <Link to={"/"} className="site-title">
+                        <img src={golomb} className='golomb'/>
+                        Car rental
+                    </Link>
+                </ul>
                 <ul>
                     <li>
                         <Link to={"/"} className="nav-link">
@@ -85,10 +91,16 @@ export default function App() {
                         </Link>
                     </li>
 
-                    {showAdminBoard && (
+                    {showAdminBoard ? (
                         <li className="nav-item">
                             <Link to={"/admin"} className="nav-link">
-                                Admin Board
+                                Admin board
+                            </Link>
+                        </li>
+                    ) : (
+                        <li className="nav-item">
+                            <Link to={"/myrentals"} className="nav-link">
+                                My rentals
                             </Link>
                         </li>
                     )}
@@ -104,7 +116,7 @@ export default function App() {
 
                 <ul>
                     {currentUser ? (
-                        <div>
+                        <ul>
                             <li className="nav-item">
                                 <Link to={"/user"} className="nav-link">
                                     {currentUser.username}
@@ -115,7 +127,7 @@ export default function App() {
                                     Logout
                                 </a>
                             </li>
-                        </div>
+                        </ul>
                     ) : (
                         <ul>
                             <li className="nav-item">
@@ -146,7 +158,9 @@ export default function App() {
                 <Route exact path="/search" element={<SearchPage/>}/>
                 <Route exact path="/about" element={<AboutPage/>}/>
                 <Route exact path="/pricing" element={<PricingPage/>}/>
+                <Route exact path="/myrentals" element={<MyRentalsPage/>}/>
                 <Route exact path="/admin" element={<AdminPage/>}/>
+                <Route exact path="/adminmanage" element={<AdminManagePage/>}/>
                 <Route exact path="/user" element={<UserPage/>}/>
                 <Route exact path="/rent" element={<RentForm/>}/>
                 <Route exact path="/info/:id" element={<CarInfo/>}/>

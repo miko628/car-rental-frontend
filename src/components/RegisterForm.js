@@ -36,6 +36,8 @@ export default function RegisterForm() {
     const submitHandler = e => {
         e.preventDefault();
 
+        setPopupTrigger(true)
+        setPopupMessage("Loading...")
 
         AuthService.register(username, email, password).then(
             (response) => {

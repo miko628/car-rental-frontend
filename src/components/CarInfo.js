@@ -46,16 +46,18 @@ export default function CarInfo(props) {
                 <label className="title">Seats {"\n"}</label>
                 <label>{Data.seats}</label>
             </div >
-           
             <div>
-            <label className="title">Car Type {"\n"}</label>
+                <label className="title">Car Type {"\n"}</label>
                 <label>{Data.carType}</label>
             </div>
             <div>
-            <label className="title">Fuel {"\n"}</label>
-            <label>{Data.fuelType}</label>
+                <label className="title">Fuel {"\n"}</label>
+                <label>{Data.fuelType}</label>
             </div>
-     
+            <div>
+                <label className="title">Price {"\n"}</label>
+                <label>{Data.price}</label>
+            </div>
         </div>
         )
 }

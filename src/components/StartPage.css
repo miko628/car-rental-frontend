@@ -1,3 +1,7 @@
+/* .startpage-container {
+    background-color: rgba(255, 234, 211, 0.37);
+} */
+
 .startpage-inner {
     padding: 5px 0px 50px 0px;
 }
@@ -18,6 +22,4 @@
     font-size: medium;
     font-weight: 400;
     padding: 0px 0px 10px 20px;
-    /* color: rgb(73, 73, 73); */
-
 }

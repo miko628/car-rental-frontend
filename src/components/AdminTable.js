@@ -5,48 +5,42 @@ import "./Table.css"
 import { useTable, useSortBy, useGlobalFilter } from 'react-table';
 import GlobalFilter from './GlobalFilter';
 
-const Table = ({ data }) => {
+const AdminTable = ({ data }) => {
     let navigate = useNavigate();
-
-    // const keys = ['url', 'showroom', 'brand', 'model', 'type', 'seats', 'transmission', 'fuel', 'id']
-    // const columns = ['Image', 'Showroom', 'Brand', 'Model', 'Type', 'Seats', 'Transmission', 'Fuel']
-
-    // usememodata
 
     const columns = useMemo(
         () => [
         {
-            Header: "Image",
-            accessor: "url",
-            Cell: ({value}) => <img src={value} className="img"/>
+            Header: "Rental ID",
+            accessor: "id",
         },
         {
             Header: "Showroom",
-            accessor: "showroom"
+            accessor: "showroomName"
         },
         {
-            Header: "Brand",
-            accessor: "brand"
+            Header: "User ID",
+            accessor: "userId"
         },
         {
-            Header: "Model",
-            accessor: "model"
+            Header: "Car ID",
+            accessor: "carId"
         },
         {
-            Header: "Type",
-            accessor: "type"
+            Header: "Start date",
+            accessor: "startDate"
         },
         {
-            Header: "Seats",
-            accessor: "seats"
+            Header: "End date",
+            accessor: "endDate"
         },
         {
-            Header: "Transmission",
-            accessor: "transmission"
+            Header: "Price",
+            accessor: "price"
         },
         {
-            Header: "Fuel",
-            accessor: "fuel"
+            Header: "Status",
+            accessor: "rentStatus"
         },
     ], [])
 
@@ -66,9 +60,9 @@ const Table = ({ data }) => {
         setGlobalFilter, 
         state } = tableInstance
 
-    const rentHandler = (e) => {
-        navigate("/rent");
-    };
+    // const rentHandler = (e) => {
+    //     navigate("/rent");
+    // };
 
     return (
         <div className="table-container">
@@ -90,7 +84,7 @@ const Table = ({ data }) => {
                 {rows.map((row, idx) => {
                     prepareRow(row)
                     return ( 
-                    <tr className="trBody" onClick={rentHandler} {...row.getRowProps()}>
+                    <tr className="trBody" {...row.getRowProps()}>
                         {row.cells.map((cell, idx) => (
                             <td className="td" {...cell.getCellProps()}>
                                 {cell.render("Cell")}
@@ -106,4 +100,4 @@ const Table = ({ data }) => {
     )
 }
 
-export default Table
+export default AdminTable
