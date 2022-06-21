@@ -34,7 +34,7 @@ export default function SearchPage() {
     useEffect(() => {
         const showroom = JSON.parse(localStorage.getItem("showroom"));
         if(showroom) {
-            console.log("storage: " + showroom)
+            // console.log("storage: " + showroom)
             fetchDataHandler(showroom)
         }
     }, []);
