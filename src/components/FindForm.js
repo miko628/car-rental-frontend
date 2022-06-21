@@ -62,7 +62,7 @@ function FindForm() {
                 <div id='form-finding'>
                     {/* <h2>Finding form</h2> */}
 
-                    <label>Select from a list:</label>
+                    <label>Select showroom from a list:</label>
                     <select
                         type="text"
                         required

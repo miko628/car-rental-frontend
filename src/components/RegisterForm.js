@@ -39,8 +39,10 @@ export default function RegisterForm() {
 
         AuthService.register(username, email, password).then(
             (response) => {
-                setMessage(response.data.message);
-                setSuccessful(true);
+                // setMessage(response.data.message);
+                // setSuccessful(true);
+                navigate("/login");
+                window.location.reload();
             },
             (error) => {
                 const resMessage =
