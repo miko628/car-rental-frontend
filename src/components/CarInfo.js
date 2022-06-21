@@ -18,7 +18,7 @@ export default function CarInfo(props) {
 
             const resultData = await result.json()
             setData(resultData)
-            console.log({ Data })
+            // console.log({ Data })
         } catch (err) {
             console.log(err.message);
         }
@@ -26,7 +26,7 @@ export default function CarInfo(props) {
     }, [])
     useEffect(() => {
         fetchDataHandler()
-    })
+    }, [])
     return (
         
         <div id="main-container">
