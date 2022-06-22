@@ -4,8 +4,13 @@ import axios from 'axios'
 import "./Table.css"
 import { useTable, useSortBy, useGlobalFilter } from 'react-table';
 import GlobalFilter from './GlobalFilter';
+import ReturnPopup from './ReturnPopup';
 
 const AdminTable = ({ data }) => {
+    const [returnPopupTrigger, setReturnPopupTrigger] = useState(false);
+    const [returnPopupMessage, setReturnPopupMessage] = useState("")
+    const [rentalId, setRentalId] = useState(0)
+    
     let navigate = useNavigate();
 
     const columns = useMemo(
@@ -60,12 +65,34 @@ const AdminTable = ({ data }) => {
         setGlobalFilter, 
         state } = tableInstance
 
-    // const rentHandler = (e) => {
-    //     navigate("/rent");
-    // };
+    
+
+    const returnCar = useCallback(async (id) => {
+        console.log("returnCar id:" + rentalId)
+        const response = await axios.post("http://localhost:8080/rent/edit", {}, { params: {
+            id
+        }});
+        if (response) {
+            if (response.status==200){
+                // setReturnPopupTrigger(false)
+                window.location.reload();
+            } else {
+                setReturnPopupMessage("Failed to return!")
+            }
+        }
+        return response;
+    }, [])
+
+    const initiateReturnCar = (props) => {
+        console.log("initiate id:" + props.row.values.id)
+        setRentalId(parseInt(props.row.values.id))
+        
+        setReturnPopupTrigger(true)
+    }
 
     return (
         <div className="table-container">
+        <ReturnPopup message={returnPopupMessage} trigger={returnPopupTrigger} setTrigger={setReturnPopupTrigger} returnCar={returnCar} id={rentalId}/>    
         <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows} setGlobalFilter={setGlobalFilter} globalFilter={state.globalFilter}/>
         <table className="table" {...getTableProps()}> 
             <thead className="thead">
@@ -84,7 +111,7 @@ const AdminTable = ({ data }) => {
                 {rows.map((row, idx) => {
                     prepareRow(row)
                     return ( 
-                    <tr className="trBody" {...row.getRowProps()}>
+                    <tr className="trBody" onClick={() => initiateReturnCar({ row })} {...row.getRowProps()}>
                         {row.cells.map((cell, idx) => (
                             <td className="td" {...cell.getCellProps()}>
                                 {cell.render("Cell")}

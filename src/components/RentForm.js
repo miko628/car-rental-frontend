@@ -15,6 +15,7 @@ function RentForm({ rentCarId }) {
     const [Showroom, setShowroom] = useState('');
     const [username, setUsername] = useState(undefined)
     const [userId, setUserId] = useState(undefined)
+
     const fetchDataHandler = useCallback(async () => {
         try {
             const result = await fetch('http://localhost:8080/showroom/names')
@@ -53,6 +54,7 @@ function RentForm({ rentCarId }) {
         
         const response = await axios
         .post("http://localhost:8080/api/payu", {
+            headers: {"Access-Control-Allow-Origin": "*"},
             carId: rentCarId,
             endDate: selectedretDate,
             showroomName: Showroom,
@@ -61,7 +63,7 @@ function RentForm({ rentCarId }) {
         }, {});
         if (response) {
             if(response.status==200){
-                // console.log("url do payu:" + response.redirectUri)
+                window.location.replace(response.request.responseURL);
             } else {
                 setPopupMessage("Call failed");
             }

@@ -39,4 +39,46 @@
 
 .popup-inner .close-button:hover {
     background-color: rgb(250, 152, 25);
+}
+
+.popup-inner .return-button {
+    position: absolute;
+    padding: 8px 12px;
+    top: 0 auto;
+    bottom: 0 auto;
+    right: 100px;
+    border-radius: 8px;
+    background-color: rgba(253, 186, 85, 0.856);
+    background-size: 200%;
+    background-position: 0%;
+    transition: 0.4s;
+    color: #FFF;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+
+.popup-inner .return-button:hover {
+    background-color: rgb(250, 152, 25);
+} 
+
+.popup-inner .cancel-button {
+    position: absolute;
+    padding: 8px 12px;
+    top: 0 auto;
+    bottom: 0 auto;
+    right: 26px;
+    border-radius: 8px;
+    background-color: rgba(253, 186, 85, 0.856);
+    background-size: 200%;
+    background-position: 0%;
+    transition: 0.4s;
+    color: #FFF;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+
+.popup-inner .cancel-button:hover {
+    background-color: rgb(250, 152, 25);
 } 

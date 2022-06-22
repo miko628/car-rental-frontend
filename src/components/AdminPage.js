@@ -7,9 +7,12 @@ import InfoPopup from './InfoPopup.js'
 import AuthService from '../services/auth.service';
 import AdminTable from './AdminTable.js';
 import "./UserPage.css"
+import ReturnPopup from './ReturnPopup.js';
 
 export default function AdminPage() {
     const [data, setData] = useState([])
+
+
     const [popupTrigger, setPopupTrigger] = useState(false);
     const [popupMessage, setPopupMessage] = useState("")
    
