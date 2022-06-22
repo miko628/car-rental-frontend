@@ -13,8 +13,8 @@ export default function MyRentalsPage() {
 
     const fetchDataHandler = useCallback(async currentUserId => {
         try {
-            console.log(currentUserId)
-            console.log("http://localhost:8080/rent/" + currentUserId)
+            // console.log(currentUserId)
+            // console.log("http://localhost:8080/rent/" + currentUserId)
             const result = await fetch("http://localhost:8080/rent/" + currentUserId)
 
             if (!result.ok) {

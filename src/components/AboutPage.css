@@ -46,13 +46,17 @@
         margin-bottom: 6px;
     }
     .mail-section input[type="submit"] {
-        background: #006697;
+        background: #51a5cc;
         color: #fff;
         width: 100%;
         border: 0;
         padding: 8px;
         border-radius: 8px;
         cursor: pointer;
+        transition: 0.4s;
+    }
+    .mail-section input[type="submit"]:hover {
+        background-color: #006da0;
     }
     .mail-section input {
         outline: solid;

@@ -102,12 +102,12 @@ export default function App() {
                                 Admin board
                             </Link>
                         </li>
-                    ) : (
+                    ) : ( currentUser && (
                         <li className="nav-item">
                             <Link to={"/myrentals"} className="nav-link">
                                 My rentals
                             </Link>
-                        </li>
+                        </li>)
                     )}
 
                     {/* {currentUser && (

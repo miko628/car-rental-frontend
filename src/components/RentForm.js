@@ -4,7 +4,9 @@ import DatePicker from 'react-datepicker';
 import { useParams } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import './forms.css'
+import "./UserPage.css"
 import AuthService from '../services/auth.service';
+import axios from 'axios';
 
 function RentForm({ rentCarId }) {
     const [selectedcollDate, setSelectedcollDate] = useState(new Date);
@@ -12,6 +14,7 @@ function RentForm({ rentCarId }) {
     const [Data, setData] = useState([]);
     const [Showroom, setShowroom] = useState('');
     const [username, setUsername] = useState(undefined)
+    const [userId, setUserId] = useState(undefined)
     const fetchDataHandler = useCallback(async () => {
         try {
             const result = await fetch('http://localhost:8080/showroom/names')
@@ -33,6 +36,7 @@ function RentForm({ rentCarId }) {
        const user = AuthService.getCurrentUser();
         if (user) {
             setUsername(user.username)
+            setUserId(user.id)
         }
         fetchDataHandler()
         console.log({ Data })
@@ -48,25 +52,16 @@ function RentForm({ rentCarId }) {
         console.log({ Showroom })
         
         const response = await axios
-        .delete("http://localhost:8080/cars/remove/" + carIdRemove, {}, {});
+        .post("http://localhost:8080/api/payu", {
+            carId: rentCarId,
+            endDate: selectedretDate,
+            showroomName: Showroom,
+            startDate: selectedcollDate,
+            userId: userId,
+        }, {});
         if (response) {
             if(response.status==200){
-                setPopupMessage("Car removed!");
-            } else {
-                setPopupMessage("Call failed");
-            }
-            setPopupTrigger(true)
-        }
-        return response;
-    }
-    const submitCarRemoveHandler = async (e) => {
-        e.preventDefault();
-
-        const response = await axios
-        .delete("http://localhost:8080/cars/remove/" + carIdRemove, {}, {});
-        if (response) {
-            if(response.status==200){
-                setPopupMessage("Car removed!");
+                // console.log("url do payu:" + response.redirectUri)
             } else {
                 setPopupMessage("Call failed");
             }
@@ -77,7 +72,8 @@ function RentForm({ rentCarId }) {
 
     return (
         <div id='form-control'>
-            {rentCarId ? (
+            {username ? (
+                rentCarId ? (
                 <div>
                     {console.log("rent: " + rentCarId)}
                     <h2>Reservation form</h2>
@@ -118,10 +114,13 @@ function RentForm({ rentCarId }) {
                         </select>
                         <input value="Confirm" type="submit" />
                     </form>
-                </div>
-            ) : (
-                <div>
-                {console.log("rent: " + rentCarId)}
+                </div>) : (
+                    <div className="user-container">
+                        <h3 className='user-profile'>Go to search page to rent a car</h3>
+                    </div>
+            )) : (
+                <div className="user-container">
+                    <h3 className='user-profile'>Login to rent a car</h3>
                 </div>
             )}
         </div>
