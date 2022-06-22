@@ -1,11 +1,12 @@
 ﻿import React from 'react';
 import { useCallback, useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
+import { useParams } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import './forms.css'
 import AuthService from '../services/auth.service';
 
-function RentForm() {
+function RentForm({ rentCarId }) {
     const [selectedcollDate, setSelectedcollDate] = useState(new Date);
     const [selectedretDate, setSelectedretDate] = useState("");
     const [Data, setData] = useState([]);
@@ -38,57 +39,91 @@ function RentForm() {
 
     }, [Showroom]);
 
-    const submitHandler = e => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-
-
 
         console.log( username)
         console.log({ selectedcollDate })
         console.log({ selectedretDate })
         console.log({ Showroom })
-
+        
+        const response = await axios
+        .delete("http://localhost:8080/cars/remove/" + carIdRemove, {}, {});
+        if (response) {
+            if(response.status==200){
+                setPopupMessage("Car removed!");
+            } else {
+                setPopupMessage("Call failed");
+            }
+            setPopupTrigger(true)
+        }
+        return response;
     }
+    const submitCarRemoveHandler = async (e) => {
+        e.preventDefault();
+
+        const response = await axios
+        .delete("http://localhost:8080/cars/remove/" + carIdRemove, {}, {});
+        if (response) {
+            if(response.status==200){
+                setPopupMessage("Car removed!");
+            } else {
+                setPopupMessage("Call failed");
+            }
+            setPopupTrigger(true)
+        }
+        return response;
+    }
+
     return (
         <div id='form-control'>
-            <h2>Reservation form</h2>
-            <form onSubmit={submitHandler}>
-
-                <label>Car collection date and time:</label>
-                <DatePicker
-                    selected={selectedcollDate}
-                    onChange={(date) => setSelectedcollDate(date)}
-                    dateFormat="dd/MM/yyyy "
-                    minDate={new Date}
-                    required
-                    placeholderText="Date of collecting car"
-                />
-
-                <label>Car return date and time:</label>
-                <DatePicker
-                    selected={selectedretDate}
-                    onChange={date => setSelectedretDate(date)}
-                    dateFormat="dd/MM/yyyy "
-                    required
-                    placeholderText="Date of returning car"
-                    minDate={new Date(selectedcollDate.getFullYear(), selectedcollDate.getMonth(), selectedcollDate.getDate() + 1)}
-
-                />
-
-                <label>Return Showroom:</label>
-                <select
-                    type="text"
-                    required
-                    value={Showroom}
-                    onChange={(e) => setShowroom(e.target.value)}
-                >
-                    <option className='tohide' ></option>
-                    {Data.map((item) => (
-                        <option key={item} >{item}</option>))}
-
-                </select>
-                <input value="Confirm" type="submit" />
-            </form>
+            {rentCarId ? (
+                <div>
+                    {console.log("rent: " + rentCarId)}
+                    <h2>Reservation form</h2>
+                    <form onSubmit={submitHandler}>
+        
+                        <label>Car collection date and time:</label>
+                        <DatePicker
+                            selected={selectedcollDate}
+                            onChange={(date) => setSelectedcollDate(date)}
+                            dateFormat="dd/MM/yyyy "
+                            minDate={new Date}
+                            required
+                            placeholderText="Date of collecting car"
+                        />
+        
+                        <label>Car return date and time:</label>
+                        <DatePicker
+                            selected={selectedretDate}
+                            onChange={date => setSelectedretDate(date)}
+                            dateFormat="dd/MM/yyyy "
+                            required
+                            placeholderText="Date of returning car"
+                            minDate={new Date(selectedcollDate.getFullYear(), selectedcollDate.getMonth(), selectedcollDate.getDate() + 1)}
+        
+                        />
+        
+                        <label>Return Showroom:</label>
+                        <select
+                            type="text"
+                            required
+                            value={Showroom}
+                            onChange={(e) => setShowroom(e.target.value)}
+                        >
+                            <option className='tohide' ></option>
+                            {Data.map((item) => (
+                                <option key={item} >{item}</option>))}
+        
+                        </select>
+                        <input value="Confirm" type="submit" />
+                    </form>
+                </div>
+            ) : (
+                <div>
+                {console.log("rent: " + rentCarId)}
+                </div>
+            )}
         </div>
     )
 }

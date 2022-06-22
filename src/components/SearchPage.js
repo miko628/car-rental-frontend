@@ -4,7 +4,7 @@ import SearchTable from './SearchTable';
 import axios from 'axios'
 import SearchForm from './SearchForm';
 
-export default function SearchPage() {
+export default function SearchPage({ passRentCarId }) {
     const [data, setData] = useState([])
 
     let navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function SearchPage() {
     return (
         <div>
             <SearchForm/>
-            <SearchTable data={data}/>
+            <SearchTable data={data} passRentCarId={passRentCarId}/>
         </div>
     )
 }

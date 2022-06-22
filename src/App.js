@@ -25,6 +25,7 @@ export default function App() {
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
     const [showroom, setShowroom] = useState('');
+    const [rentCarId, setRentCarId] = useState(undefined)
 
     let navigate = useNavigate();
 
@@ -44,6 +45,10 @@ export default function App() {
         // setShowAdminBoard(false);
         // setCurrentUser(undefined);
     };
+
+    const passRentCarId = (rentCarId) => {
+        setRentCarId(rentCarId)
+    }
 
     return (
         <div>
@@ -155,14 +160,14 @@ export default function App() {
                 <Route exact path="/login" element={<LoginForm/>}/>
                 <Route exact path="/register" element={<RegisterForm/>}/>
                 {/* <Route exact path="/home" element={<HomePage/>}/> */}
-                <Route exact path="/search" element={<SearchPage/>}/>
+                <Route exact path="/search" element={<SearchPage passRentCarId={passRentCarId}/>}/>
                 <Route exact path="/about" element={<AboutPage/>}/>
                 <Route exact path="/pricing" element={<PricingPage/>}/>
                 <Route exact path="/myrentals" element={<MyRentalsPage/>}/>
                 <Route exact path="/admin" element={<AdminPage/>}/>
                 <Route exact path="/adminmanage" element={<AdminManagePage/>}/>
                 <Route exact path="/user" element={<UserPage/>}/>
-                <Route exact path="/rent" element={<RentForm/>}/>
+                <Route exact path="/rent" element={<RentForm rentCarId={rentCarId}/>}/>
                 <Route exact path="/info/:id" element={<CarInfo/>}/>
                 
             </Routes>

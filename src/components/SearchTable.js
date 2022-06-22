@@ -5,7 +5,7 @@ import "./Table.css"
 import { useTable, useSortBy, useGlobalFilter } from 'react-table';
 import GlobalFilter from './GlobalFilter';
 
-const SearchTable = ({ data }) => {
+const SearchTable = ({ data, passRentCarId }) => {
     let navigate = useNavigate();
 
     // const keys = ['url', 'showroom', 'brand', 'model', 'type', 'seats', 'transmission', 'fuel', 'id']
@@ -70,7 +70,9 @@ const SearchTable = ({ data }) => {
         setGlobalFilter, 
         state } = tableInstance
 
-    const rentHandler = (e) => {
+    const rentHandler = (props) => {
+        console.log("search:" + props.row.values.id)
+        passRentCarId(props.row.values.id)
         navigate("/rent");
     };
 
@@ -94,7 +96,7 @@ const SearchTable = ({ data }) => {
                 {rows.map((row, idx) => {
                     prepareRow(row)
                     return ( 
-                    <tr className="trBody" onClick={rentHandler} {...row.getRowProps()}>
+                    <tr className="trBody" onClick={() => rentHandler({ row })} {...row.getRowProps()}>
                         {row.cells.map((cell, idx) => (
                             <td className="td" {...cell.getCellProps()}>
                                 {cell.render("Cell")}
