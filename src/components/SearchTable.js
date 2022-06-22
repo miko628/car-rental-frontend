@@ -25,6 +25,10 @@ const SearchTable = ({ data }) => {
             accessor: "showroom"
         },
         {
+            Header: "Car ID",
+            accessor: "id"
+        },
+        {
             Header: "Brand",
             accessor: "brand"
         },

@@ -118,7 +118,7 @@ input, label, button {
 .manage-button {
     position: absolute;
     padding: 8px 12px;
-    top: 82px;
+    top: 160px;
     right: 16px;
     border-radius: 8px;
     background-color: rgba(253, 186, 85, 0.856);

@@ -16,7 +16,7 @@ import AdminManagePage from './components/AdminManagePage';
 import MyRentalsPage from './components/MyRentalsPage';
 
 import "./components/styles.css"
-import golomb from"./golomb-watoski.png"
+import golomb from "./golomb-watoski.png"
 
 
 

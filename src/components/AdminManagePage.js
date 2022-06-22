@@ -14,6 +14,16 @@ export default function AdminManagePage() {
     const [currentUser, setCurrentUser] = useState(undefined);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
 
+    const[carIdAddTo, setCarIdAddTo] = useState("")
+    const[showroomAddTo, setShowroomAddTo] = useState("")
+
+    const[carIdRemoveFrom, setCarIdRemoveFrom] = useState("")
+    const[showroomRemoveFrom, setShowroomRemoveFrom] = useState("")
+
+    const[carIdRemove, setCarIdRemove] = useState("")
+
+    const[showroomRemove, setShowroomRemove] = useState("")
+
     const [brand, setBrand] = useState("");
     const [carType, setCarType] = useState("");
     const [engine, setEngine] = useState("");
@@ -30,6 +40,30 @@ export default function AdminManagePage() {
     const [longitude, setLongitude] = useState("");
     const [showroom, setShowroom] = useState("");
 
+    const onChangeCarIdAddTo = (e) => {
+        const carIdAddTo = e.target.value;
+        setCarIdAddTo(carIdAddTo);
+    };
+    const onChangeShowroomAddTo = (e) => {
+        const showroomAddTo = e.target.value;
+        setShowroomAddTo(showroomAddTo);
+    };
+    const onChangeCarIdRemoveFrom = (e) => {
+        const carIdRemoveFrom = e.target.value;
+        setCarIdRemoveFrom(carIdRemoveFrom);
+    };
+    const onChangeShowroomRemoveFrom = (e) => {
+        const showroomRemoveFrom = e.target.value;
+        setShowroomRemoveFrom(showroomRemoveFrom);
+    };
+    const onChangeCarIdRemove = (e) => {
+        const carIdRemove = e.target.value;
+        setCarIdRemove(carIdRemove);
+    };
+    const onChangeShowroomRemove = (e) => {
+        const showroomRemove = e.target.value;
+        setShowroomRemove(showroomRemove);
+    };
     const onChangeBrand = (e) => {
         const brand = e.target.value;
         setBrand(brand);
@@ -87,10 +121,73 @@ export default function AdminManagePage() {
         setShowroom(showroom);
     };
 
+    const submitCarAddToHandler = async (e) => {
+        e.preventDefault();
+
+        const response = await axios
+        .post("http://localhost:8080/showroom/" + showroomAddTo + "/" + carIdAddTo, {}, {});
+        if (response) {
+            if(response.status==200){
+                setPopupMessage("Car added to showroom!");
+            } else {
+                setPopupMessage("Call failed");
+            }
+            setPopupTrigger(true)
+        }
+        return response;
+    }
+
+    const submitCarRemoveFromHandler = async (e) => {
+        e.preventDefault();
+
+        const response = await axios
+        .delete("http://localhost:8080/showroom/remove/" + showroomRemoveFrom + "/" + carIdRemoveFrom, {}, {});
+        if (response) {
+            if(response.status==200){
+                setPopupMessage("Car removed from showroom!");
+            } else {
+                setPopupMessage("Call failed");
+            }
+            setPopupTrigger(true)
+        }
+        return response;
+    }
+
+    const submitCarRemoveHandler = async (e) => {
+        e.preventDefault();
+
+        const response = await axios
+        .delete("http://localhost:8080/cars/remove/" + carIdRemove, {}, {});
+        if (response) {
+            if(response.status==200){
+                setPopupMessage("Car removed!");
+            } else {
+                setPopupMessage("Call failed");
+            }
+            setPopupTrigger(true)
+        }
+        return response;
+    }
+
+    const submitShowroomRemoveHandler = async (e) => {
+        e.preventDefault();
+
+        const response = await axios
+        .delete("http://localhost:8080/showroom/remove/" + showroomRemove, {}, {});
+        if (response) {
+            if(response.status==200){
+                setPopupMessage("Showroom removed!");
+            } else {
+                setPopupMessage("Call failed");
+            }
+            setPopupTrigger(true)
+        }
+        return response;
+    }
+
     const submitCarHandler = async (e) => {
         e.preventDefault();
 
-        
         const response = await axios.post("http://localhost:8080/cars/add/", {}, { params: {
             brand,
             carType,
@@ -105,9 +202,12 @@ export default function AdminManagePage() {
             vin,
         }});
         if (response) {
-            setPopupMessage("Car added!")
+            if(response.status==200){
+                setPopupMessage("Car added!");
+            } else {
+                setPopupMessage("Call failed");
+            }
             setPopupTrigger(true)
-            console.log("Car added!")
         }
         return response;
     }
@@ -125,8 +225,11 @@ export default function AdminManagePage() {
             name: showroom,
         });
         if (response) {
-            console.log("Showroom added!")
-            setPopupMessage("Showroom added!")
+            if(response.status==200){
+                setPopupMessage("Showroom added!");
+            } else {
+                setPopupMessage("Call failed");
+            }
             setPopupTrigger(true)
         }
         return response;
@@ -149,6 +252,54 @@ export default function AdminManagePage() {
             </InfoPopup>
             <h2 className='page-title'>Admin management</h2>
             <div className="user-container">
+                <div className="form">
+                    <div className="form-inner">
+                        <h3 className='car-add-to'>Add a car to showroom</h3>
+                        <div className="form-group">
+                            <label htmlFor="carIdAddTo">Car ID:</label>
+                            <input  name="carIdAddTo" id="carIdAddTo" value={carIdAddTo}
+                                onChange={onChangeCarIdAddTo} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="showroomAddTo">Showroom name:</label>
+                            <input  name="showroomAddTo" id="showroomAddTo" value={showroomAddTo}
+                                onChange={onChangeShowroomAddTo} />
+                        </div>
+                        <button className="form-submit" onClick={submitCarAddToHandler}>Add</button>
+                    </div>
+                    <div className="form-inner">
+                        <h3 className='car-add-to'>Remove a car from showroom</h3>
+                        <div className="form-group">
+                            <label htmlFor="carIdRemoveFrom">Car ID:</label>
+                            <input  name="carIdRemoveFrom" id="carIdRemoveFrom" value={carIdRemoveFrom}
+                                onChange={onChangeCarIdRemoveFrom} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="showroomRemoveFrom">Showroom name:</label>
+                            <input  name="showroomRemoveFrom" id="showroomRemoveFrom" value={showroomRemoveFrom}
+                                onChange={onChangeShowroomRemoveFrom} />
+                        </div>
+                        <button className="form-submit" onClick={submitCarRemoveFromHandler}>Remove</button>
+                    </div>
+                    <div className="form-inner">
+                        <h3 className='car-remove'>Remove a car</h3>
+                        <div className="form-group">
+                            <label htmlFor="carIdRemove">Car ID:</label>
+                            <input  name="carIdRemove" id="carIdRemove" value={carIdRemove}
+                                onChange={onChangeCarIdRemove} />
+                        </div>
+                        <button className="form-submit" onClick={submitCarRemoveHandler}>Remove</button>
+                    </div>
+                    <div className="form-inner">
+                        <h3 className='showroom-remove'>Remove a showroom</h3>
+                        <div className="form-group">
+                            <label htmlFor="showroomRemove">Showroom name:</label>
+                            <input  name="showroomRemove" id="showroomRemove" value={showroomRemove}
+                                onChange={onChangeShowroomRemove} />
+                        </div>
+                        <button className="form-submit" onClick={submitShowroomRemoveHandler}>Remove</button>
+                    </div>
+                </div>
                 <div className="form">
                     <div className="form-inner">
                         <h3 className='car-add'>Add a car</h3>
@@ -207,10 +358,10 @@ export default function AdminManagePage() {
                             <input name="Vin" id="Vin" value={vin}
                                 onChange={onChangeVin} />
                         </div>
-                        <button className="form-submit" onClick={submitCarHandler}>Add car</button>
+                        <button className="form-submit" onClick={submitCarHandler}>Add</button>
                     </div>
                 </div>
-                <div onSubmit={submitShowroomHandler} className="form">
+                <div className="form">
                     <div className="form-inner">
                         <h3 className='showroom-add'>Add a showroom </h3>
                         <div className="form-group">
@@ -228,7 +379,7 @@ export default function AdminManagePage() {
                             <input name="showroom" id="showroom" value={showroom}
                                 onChange={onChangeShowroom} />
                         </div>
-                        <button className="form-submit" onClick={submitShowroomHandler}>Add Showroom</button>
+                        <button className="form-submit" onClick={submitShowroomHandler}>Add</button>
                     </div>
                 </div>
             </div>
