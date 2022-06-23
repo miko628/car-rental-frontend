@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios";
 import { useCallback, useState, useEffect } from 'react';
 import InfoPopup from './InfoPopup.js'
-import './AboutPage.css'
+import '../styles/AboutPage.css'
 
 
 export default function AboutPage() {

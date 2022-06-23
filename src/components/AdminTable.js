@@ -1,12 +1,15 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import {useNavigate} from "react-router-dom"
 import axios from 'axios'
-import "./Table.css"
+import "../styles/Table.css"
 import { useTable, useSortBy, useGlobalFilter } from 'react-table';
 import GlobalFilter from './GlobalFilter';
 import ReturnPopup from './ReturnPopup';
+import InfoPopup from './InfoPopup';
 
 const AdminTable = ({ data }) => {
+    const [popupTrigger, setPopupTrigger] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("")
     const [returnPopupTrigger, setReturnPopupTrigger] = useState(false);
     const [returnPopupMessage, setReturnPopupMessage] = useState("")
     const [rentalId, setRentalId] = useState(0)
@@ -20,7 +23,7 @@ const AdminTable = ({ data }) => {
             accessor: "id",
         },
         {
-            Header: "Showroom",
+            Header: "Return showroom",
             accessor: "showroomName"
         },
         {
@@ -68,7 +71,7 @@ const AdminTable = ({ data }) => {
     
 
     const returnCar = useCallback(async (id) => {
-        console.log("returnCar id:" + rentalId)
+        console.log("returnCar id:" + id)
         const response = await axios.post("http://localhost:8080/rent/edit", {}, { params: {
             id
         }});
@@ -77,7 +80,8 @@ const AdminTable = ({ data }) => {
                 // setReturnPopupTrigger(false)
                 window.location.reload();
             } else {
-                setReturnPopupMessage("Failed to return!")
+                setPopupMessage("Failed to return!")
+                setPopupTrigger(true)
             }
         }
         return response;
@@ -91,8 +95,13 @@ const AdminTable = ({ data }) => {
     }
 
     return (
-        <div className="table-container">
-        <ReturnPopup message={returnPopupMessage} trigger={returnPopupTrigger} setTrigger={setReturnPopupTrigger} returnCar={returnCar} id={rentalId}/>    
+    <div className="table-container">
+        <InfoPopup trigger={popupTrigger} setTrigger={setPopupTrigger}>
+                <h3>{popupMessage}</h3>
+        </InfoPopup>
+        <ReturnPopup trigger={returnPopupTrigger} setTrigger={setReturnPopupTrigger} returnCar={returnCar} id={rentalId}>
+            <h3>{returnPopupMessage}</h3>
+        </ReturnPopup>    
         <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows} setGlobalFilter={setGlobalFilter} globalFilter={state.globalFilter}/>
         <table className="table" {...getTableProps()}> 
             <thead className="thead">

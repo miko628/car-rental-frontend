@@ -1,7 +1,7 @@
 ﻿import React, { useCallback, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 //import AuthService from '../services/auth.service';
-import './CarInfo.css'
+import '../styles/CarInfo.css'
 
 export default function CarInfo(props) {
     const [Data, setData] = useState([]);

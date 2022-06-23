@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom"
 import SearchForm from './SearchForm';
 import Map from './Map';
 import ReactCardSlider from './ReactCardSlider';
-import "./StartPage.css"
+import "../styles/StartPage.css"
 
 export default function StartPage({FindCars}) {
 

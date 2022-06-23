@@ -15,7 +15,7 @@ import AdminPage from './components/AdminPage';
 import AdminManagePage from './components/AdminManagePage';
 import MyRentalsPage from './components/MyRentalsPage';
 
-import "./components/styles.css"
+import "./styles/styles.css"
 import golomb from "./golomb-watoski.png"
 
 
@@ -86,15 +86,16 @@ export default function App() {
                         </Link>
                     </li>
                     <li>
-                        <Link to={"/about"} className="nav-link">
-                            About
-                        </Link>
-                    </li>
-                    <li>
                         <Link to={"/pricing"} className="nav-link">
                             Pricing
                         </Link>
                     </li>
+                    <li>
+                        <Link to={"/about"} className="nav-link">
+                            About
+                        </Link>
+                    </li>
+                    
 
                     {showAdminBoard ? (
                         <li className="nav-item">

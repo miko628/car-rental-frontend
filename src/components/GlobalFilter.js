@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAsyncDebounce } from "react-table";
-import './GlobalFilter.css'
+import '../styles/GlobalFilter.css'
 
 export default function GlobalFilter({
     preGlobalFilteredRows,

@@ -6,7 +6,7 @@ import FindForm from './FindForm';*/
 import InfoPopup from './InfoPopup.js'
 import AuthService from '../services/auth.service';
 import AdminTable from './AdminTable.js';
-import "./UserPage.css"
+import "../styles/UserPage.css"
 import ReturnPopup from './ReturnPopup.js';
 
 export default function AdminPage() {

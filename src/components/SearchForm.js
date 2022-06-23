@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import './forms.css'
+import '../styles/forms.css'
 import { useCallback, useState, useEffect } from 'react';
 import {Link, Route, Routes, useNavigate} from "react-router-dom";
 

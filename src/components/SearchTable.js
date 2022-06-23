@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import {useNavigate} from "react-router-dom"
 import axios from 'axios'
-import "./Table.css"
+import "../styles/Table.css"
 import { useTable, useSortBy, useGlobalFilter } from 'react-table';
 import GlobalFilter from './GlobalFilter';
 

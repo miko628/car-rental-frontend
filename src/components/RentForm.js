@@ -3,8 +3,8 @@ import { useCallback, useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { useParams } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
-import './forms.css'
-import "./UserPage.css"
+import '../styles/forms.css'
+import "../styles/UserPage.css"
 import AuthService from '../services/auth.service';
 import axios from 'axios';
 

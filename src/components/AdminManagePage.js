@@ -5,9 +5,12 @@ import FindForm from './FindForm';*/
 import InfoPopup from './InfoPopup.js'
 import AuthService from '../services/auth.service';
 import AdminTable from './AdminTable.js';
-import "./UserPage.css"
+import "../styles/UserPage.css"
 
 export default function AdminManagePage() {
+    const [showrooms, setShowrooms] = useState([])
+    const [cars, setCars] = useState([])
+
     const [popupTrigger, setPopupTrigger] = useState(false);
     const [popupMessage, setPopupMessage] = useState("")
    
@@ -40,6 +43,7 @@ export default function AdminManagePage() {
     const [longitude, setLongitude] = useState("");
     const [showroom, setShowroom] = useState("");
 
+
     const onChangeCarIdAddTo = (e) => {
         const carIdAddTo = e.target.value;
         setCarIdAddTo(carIdAddTo);
@@ -67,10 +71,12 @@ export default function AdminManagePage() {
     const onChangeBrand = (e) => {
         const brand = e.target.value;
         setBrand(brand);
+        
     };
     const onChangeEngine = (e) => {
         const engine = e.target.value;
         setEngine(engine);
+        
     };
     const onChangeModel = (e) => {
         const model = e.target.value;
@@ -188,19 +194,25 @@ export default function AdminManagePage() {
     const submitCarHandler = async (e) => {
         e.preventDefault();
 
-        const response = await axios.post("http://localhost:8080/cars/add/", {}, { params: {
-            brand,
-            carType,
-            engine,
-            image,
-            fuel,
-            model,
-            plate,
-            price,
-            seats,
-            transmission,
-            vin,
-        }});
+        const formData = new FormData()
+        formData.append("brand", brand)
+        formData.append("carType", carType)
+        formData.append("engine", engine)
+        formData.append("file", image)
+        formData.append("fuel", fuel)
+        formData.append("model", model)
+        formData.append("plate", plate)
+        formData.append("price", price)
+        formData.append("seats", seats)
+        formData.append("transmission", transmission)
+        formData.append("vin", vin)
+        
+        const config = {
+            headers: {
+              "content-type": "multipart/form-data"
+            }
+        }
+        const response = await axios.post("http://localhost:8080/cars/add/", formData, config);
         if (response) {
             if(response.status==200){
                 setPopupMessage("Car added!");
@@ -235,7 +247,44 @@ export default function AdminManagePage() {
         return response;
     }
 
+    const fetchShowroomsHandler = useCallback(async () => {
+        try {
+            const result = await fetch('http://localhost:8080/showroom/names')
+
+            if (!result.ok) {
+                throw new Error("Nie uda�o si� pobra� danych")
+            }
+
+            const resultData = await result.json()
+            setShowrooms(resultData)
+
+        } catch (err) {
+            console.log(err.message);
+        }
+
+    }, [])
+
+    const fetchCarsHandler = useCallback(async () => {
+        try {
+            const result = await fetch('http://localhost:8080/showroom/names')
+
+            if (!result.ok) {
+                throw new Error("Nie uda�o si� pobra� danych")
+            }
+
+            const resultData = await result.json()
+            setShowrooms(resultData)
+
+        } catch (err) {
+            console.log(err.message);
+        }
+
+    }, [])
+
     useEffect(() => {
+        fetchShowroomsHandler()
+        console.log({ showrooms })
+
         const user = AuthService.getCurrentUser();
 
         if (user) {

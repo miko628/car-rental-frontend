@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import AuthService from '../services/auth.service';
-import "./UserPage.css"
+import "../styles/UserPage.css"
 import InfoPopup from './InfoPopup';
 
 export default function UserPage() {

@@ -1,10 +1,11 @@
 import React from 'react'
-import './InfoPopup.css'
+import '../styles/InfoPopup.css'
 
 export default function ReturnPopup(props) {
 
     return (props.trigger) ? (
         <div className='popup'>
+            {console.log(props.message)}
             <div className='popup-inner'>
 
                 <button className='return-button' onClick={() => props.returnCar(props.id)}>
@@ -14,7 +15,7 @@ export default function ReturnPopup(props) {
                     Cancel
                 </button>
                 <h3>Return car?</h3>
-                <h3>{props.message}</h3>
+                {props.children}
             </div>
         </div>
     ) : ""

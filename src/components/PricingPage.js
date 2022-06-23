@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import './PricingPage.css'
+import '../styles/PricingPage.css'
+
 export default function PricingPage() {
     const [cars, setCars] = useState([])
     const clickEvent = (props) => {

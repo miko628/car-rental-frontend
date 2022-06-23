@@ -1,5 +1,5 @@
 import React from 'react'
-import './InfoPopup.css'
+import '../styles/InfoPopup.css'
 
 export default function InfoPopup(props) {
     return (props.trigger) ? (

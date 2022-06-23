@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import {useNavigate} from "react-router-dom"
-import './Slider.css';
+import '../styles/Slider.css';
 import axios from "axios";
 import HomePage from './HomePage';
 
